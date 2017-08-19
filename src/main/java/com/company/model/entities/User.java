@@ -52,8 +52,7 @@ public class User implements Serializable{
 	@Type(type="yes_no")
 	public boolean enable;
 	
-	//@OneToOne
-	//private Profile profile;
+
 	@JsonIgnore
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idprofile", nullable = false)	
