@@ -1,0 +1,34 @@
+<div class="artist-result">
+	<div class="artist-info">
+		<span class="artist-name" (click)="viewProfile(res)">{{res.artist.name}}</span>
+		<img class="artist-image" [src]="res.artist.imageURL" />
+
+		<span class="type">
+			<!-- Use ngIf to verify proper image to render -->
+			<img src="assets/images/Artistpink.png" *ngIf="checkTime(res.date)">
+			<img src="assets/images/Artistgray.png" *ngIf="!checkTime(res.date)">
+		</span>
+	</div>
+	
+	<div class="event-info">
+		<div class="name-date-play">
+			<div class="name-and-date">
+				<span>{{res.venue.name}}</span>
+				<span>{{res.date | date: 'fullDate'}}</span>
+			</div>
+
+			<button md-mini-fab>
+				<md-icon>play_arrow</md-icon>
+			</button>
+		</div>
+
+		<span class="address">
+			{{res.venue.address}}
+		</span>
+	</div>
+
+	<div class="similar">
+		Similar to [something]
+	</div>
+	
+</div>

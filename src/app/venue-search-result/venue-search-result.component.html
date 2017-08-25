@@ -1,0 +1,24 @@
+<div class="venue-result">
+	<div class="venue-info">
+		<span class="venue-name" (click)="viewProfile(res)">{{res.venue.name}}</span>
+		<img class="venue-image" [src]="res.venue.imageURL" />
+	</div>
+	
+	<div class="event-info">
+		<div class="name-date-play">
+			<div class="name-and-date">
+				<span>{{res.artist.name}}</span>
+				<span>{{res.date | date: 'fullDate'}}</span>
+			</div>
+
+			<button md-mini-fab>
+				<md-icon>play_arrow</md-icon>
+			</button>
+		</div>
+
+		<span class="address">
+			{{res.venue.address}}
+		</span>
+	</div>
+	
+</div>
