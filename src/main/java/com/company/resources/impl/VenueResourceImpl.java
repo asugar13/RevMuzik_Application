@@ -31,7 +31,7 @@ public class VenueResourceImpl implements VenueResource {
 			@ApiResponse(code = 200, message = "Retrieves a list of venues", responseContainer = "List", response = Venue.class),
 			@ApiResponse(code = 204, message = "No content retrieve", responseContainer = "List", response = Void.class) })
 	@Override
-	@RequestMapping(value = { "", "/venues" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
 	public ResponseEntity<List<Venue>> list() {
 		List<Venue> venues = service.list();
 		

@@ -19,8 +19,7 @@ public class VenueServiceImpl implements VenueService {
 	
 	@Override
 	public List<Venue> list() {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findAll();
 	}
 
 	@Override
