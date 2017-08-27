@@ -14,7 +14,10 @@ import com.company.model.entities.User;
  */
 public interface UserRepository extends JpaRepository<User, Long> {
 	
-	@Query("SELECT u FROM User u WHERE u.user_email = :email AND u.enable = true")
+	@Query("SELECT u FROM User u WHERE u.userEmail = :email AND u.enable = true")
 	User findByEmail(@Param("email") String email);
+	
+	@Query("SELECT u FROM User u WHERE u.iduser = :id AND u.enable = true")
+	User findByIdUser(@Param("id") Long id);
 	
 }

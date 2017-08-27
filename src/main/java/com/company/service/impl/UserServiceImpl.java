@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.company.model.entities.User;
 import com.company.repository.UserRepository;
 import com.company.service.UserService;
-
+import com.company.model.entities.Artist;
 import com.company.model.entities.Show;
 
 
@@ -38,9 +38,9 @@ public class UserServiceImpl implements UserService {
 		String email = (String)authentication.getPrincipal(); 
 		User user = repository.findByEmail( email );
 		if ( user != null ) {
-			Iterator<Show> showIterator = user.getShows().iterator();
+			Iterator<Artist> showIterator = user.getArtist().iterator();
 			while ( showIterator.hasNext() ) {
-				if ( showIterator.next().getId().equals( showId ) ) {
+				if ( showIterator.next().getIdartist().equals( showId ) ) {
 					return true;
 				}
 			}
@@ -72,13 +72,13 @@ public class UserServiceImpl implements UserService {
 		if (null == persisted)
 			return null;
 		
-		persisted.setUserEmail( user.getUserEmail());
+		//persisted.setUserEmail( user.getUserEmail());
 		persisted.setUserName( user.getUserName());
 		persisted.setUserFirstName( user.getUserFirstName());
 		persisted.setUserLastName(user.getUserLastName());
 		persisted.setEnable( user.isEnable() );
 		persisted.setProfile( user.getProfile() );
-		persisted.setShows( user.getShows() );
+		//persisted.setShows( user.getShows() );
 
 		return repository.save(persisted);
 	}

@@ -37,6 +37,7 @@ public class UserResourceImpl implements UserResource {
 	@Override
 	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
 	public ResponseEntity<List<User>> list() {
+		
 		List<User> users = service.list();
 
 		if (users.isEmpty())
@@ -51,7 +52,8 @@ public class UserResourceImpl implements UserResource {
 			@ApiResponse(code = 204, message = "No content retrieve searched by id", response = Void.class) })
 	@Override
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<User> get(@ApiParam(value = "User Id", required = true) @PathVariable("iduser") Long id) {
+	public ResponseEntity<User> get(@ApiParam(value = "User Id", required = true) @PathVariable("id") Long id) {
+		
 		User user = service.get(id);
 
 		if (null == user)

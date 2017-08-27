@@ -1,6 +1,7 @@
 package com.company.model.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -21,9 +21,6 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import com.company.model.entities.Profile;
-import com.company.model.entities.Show;
 
 @Entity
 @Table(name = "user")
@@ -36,33 +33,52 @@ public class User implements Serializable{
 	private Long iduser;
 	
 	@NotNull
-	private String user_email;
+	@Column(name="user_email")
+	private String userEmail;
 
-	private String user_first_name;
+	@Column(name="user_first_name")
+	private String userFirstName;
 
-	private String user_last_name;
+	@Column(name="user_last_name")
+	private String userLastName;
 
 	@NotNull
-	private String user_name;
+	@Column(name="user_name")
+	private String userName;
 
 	@NotNull
-	private String user_password;
+	@Column(name="user_password")
+	private String userPassword;
 	
 	@Column(name = "enable", columnDefinition = "BIT", length = 1)
 	@Type(type="yes_no")
 	public boolean enable;
 	
-	//@OneToOne
-	//private Profile profile;
 	@JsonIgnore
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "idprofile", nullable = false)	
+	@OneToOne
 	private Profile profile;
 	
 	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
-	private Set<Show> shows;
+	@OneToOne
+	private TypeUser typeuser;
+
 	
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<Artist> artist;
+	
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<Venue> venue;
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "user_genre", 
+		joinColumns = {
+			@JoinColumn(name = "iduser", nullable = false, updatable = false) },
+		inverseJoinColumns = { 
+				@JoinColumn(name = "idgenre", nullable = false, updatable = false) })	
+	private Set<Genre> genre;	
+
 	//add /bi-directional many-to-many association to SocialMedi Genre Media
 	
 	public Long getId() {
@@ -73,44 +89,61 @@ public class User implements Serializable{
 		this.iduser = id;
 	}
 
-	public String getUserEmail() {
-		return user_email;
+	public Long getIduser() {
+		return iduser;
 	}
 
-	public void setUserEmail(String userEmail) {
-		this.user_email = userEmail;
+	public void setIduser(Long iduser) {
+		this.iduser = iduser;
 	}
 
 	public String getUserFirstName() {
-		return user_first_name;
+		return userFirstName;
 	}
 
 	public void setUserFirstName(String userFirstName) {
-		this.user_first_name = userFirstName;
+		this.userFirstName = userFirstName;
 	}
 
 	public String getUserLastName() {
-		return user_last_name;
+		return userLastName;
 	}
 
 	public void setUserLastName(String userLastName) {
-		this.user_last_name = userLastName;
+		this.userLastName = userLastName;
 	}
 
 	public String getUserName() {
-		return user_name;
+		return userName;
 	}
 
 	public void setUserName(String userName) {
-		this.user_name = userName;
+		this.userName = userName;
 	}
 
 	public String getUserPassword() {
-		return user_password;
+		return userPassword;
 	}
 
 	public void setUserPassword(String userPassword) {
-		this.user_password = userPassword;
+		this.userPassword = userPassword;
+	}
+
+	
+	public List<Artist> getArtist() {
+		return artist;
+	}
+
+	public void setArtist(List<Artist> artist) {
+		this.artist = artist;
+	}
+
+	public List<Venue> getVenue() {
+		return venue;
+	}
+
+	public void setVenue(List<Venue> venue) {
+		this.venue = venue;
 	}
 
 	public boolean isEnable() {
@@ -130,12 +163,29 @@ public class User implements Serializable{
 		this.profile = profile;
 	}
 
-	public Set<Show> getShows() {
-		return shows;
+	public TypeUser getTypeuser() {
+		return typeuser;
 	}
 
-	public void setShows(Set<Show> shows) {
-		this.shows = shows;
+	public void setTypeuser(TypeUser typeuser) {
+		this.typeuser = typeuser;
 	}
 
+	public Set<Genre> getGenre() {
+		return genre;
+	}
+
+	public void setGenre(Set<Genre> genre) {
+		this.genre = genre;
+	}
+
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+	
+	
 }

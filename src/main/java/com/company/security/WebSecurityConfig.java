@@ -38,18 +38,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
              .antMatchers("/").permitAll()
              
              //shows
-             .antMatchers( "/api/v1/shows/**" ).hasAnyAuthority("SHOWS_LIST,SHOWS_CREATE,SHOWS_EDIT,SHOWS_DELETE")
+            // .antMatchers( "/api/v1/shows/**" ).hasAnyAuthority("SHOWS_LIST,SHOWS_CREATE,SHOWS_EDIT,SHOWS_DELETE")
              .antMatchers( "/api/v1/users/**" ).hasAnyAuthority("USERS_LIST,USERS_CREATE,USERS_EDIT,USERS_DELETE")
              
                           
              //login 
              .antMatchers(HttpMethod.POST, "/api/v1/login").permitAll()
+             //landinpage
+             .antMatchers(HttpMethod.GET, "/api/v1/landinpage").permitAll()
              
-             .anyRequest().authenticated()
-             .and()
+            // .anyRequest().authenticated()
+             .anyRequest().permitAll();
+             //.and()
              // We filter the api/login requests
-             .addFilterBefore(new JWTLoginFilter("/api/v1/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
+            // .addFilterBefore(new JWTLoginFilter("/api/v1/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
              // And filter other requests to check the presence of JWT in header
-             .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+            // .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
      }
 }

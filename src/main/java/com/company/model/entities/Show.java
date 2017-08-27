@@ -1,69 +1,116 @@
 package com.company.model.entities;
 
 import java.io.Serializable;
-import java.util.Set;
+import javax.persistence.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.Date;
+import java.util.List;
+
+
+/**
+ * The persistent class for the shows database table.
+ * 
+ */
 @Entity
-@Table(name = "shows")
+@Table(name="shows")
+@NamedQuery(name="Show.findAll", query="SELECT s FROM Show s")
 public class Show implements Serializable {
-	
-	private static final long serialVersionUID = 5307205810414341804L;
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	private Long idshows;
-		
-	@Size(min = 1, max = 60)	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long idshow;
+
+	@Column(name = "description")	
+	private String description;
+	
+	@Column(name = "name")	
 	private String name;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="end_date_time")
+	private Date endDateTime;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="start_date_time")
+	private Date startDateTime;
+
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idvenue", nullable = false)	
+	private Venue venue;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "shows_users", 
-		joinColumns = {
-			@JoinColumn(name = "show_id", nullable = false, updatable = false) },
-		inverseJoinColumns = { 
-				@JoinColumn(name = "user_id", nullable = false, updatable = false) })	
-	private Set<User> users;
-	
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idartist", nullable = false)	
+	private Artist artist;
+
 	public Show() {
-		
 	}
+
 	
-	public Show(Long id, String name) {
-		this.idshows = id;
-		this.name = name;
+	public Long getIdshow() {
+		return idshow;
 	}
 
-	public Long getId() {
-		return idshows;
+
+	public void setIdshow(Long idshow) {
+		this.idshow = idshow;
 	}
 
-	public void setId(Long id) {
-		this.idshows = id;
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Date getEndDateTime() {
+		return this.endDateTime;
+	}
+
+	public void setEndDateTime(Date endDateTime) {
+		this.endDateTime = endDateTime;
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public Set<User> getUsers() {
-		return users;
+	public Date getStartDateTime() {
+		return this.startDateTime;
 	}
 
-	public void setUsers(Set<User> users) {
-		this.users = users;
+	public void setStartDateTime(Date startDateTime) {
+		this.startDateTime = startDateTime;
 	}
+
+
+	public Venue getVenue() {
+		return venue;
+	}
+
+
+	public void setVenue(Venue venue) {
+		this.venue = venue;
+	}
+
+
+	public Artist getArtist() {
+		return artist;
+	}
+
+
+	public void setArtist(Artist artist) {
+		this.artist = artist;
+	}
+	
 	
 }
