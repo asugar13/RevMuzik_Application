@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: revMuzik_app
+Implementation-Version: 0.0.1
+Built-By: Eliane Netto
+Implementation-Vendor-Id: revmuzik
+Build-Jdk: 1.8.0_131
+Implementation-URL: http://projects.spring.io/spring-boot/revMuzik_app
+ /
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
