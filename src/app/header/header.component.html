@@ -6,8 +6,8 @@
 
 <!-- Hide section if user logged in -->
 	<div class="navigation" *ngIf="!isSignedIn">
-		<a href="#" class="link link1">Sign In</a>
-		<a href="#" class="link link2">Create Account</a>
+		<a (click)="logIn();" class="link link1">Sign In</a>
+		<a (click)="signUp();" class="link link2">Create Account</a>
 	</div>
 
 <!--Hide if user not logged in -->
