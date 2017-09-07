@@ -68,7 +68,7 @@ public class Venue implements Serializable {
 			@JoinColumn(name = "idvenue", nullable = false, updatable = false) },
 		inverseJoinColumns = { 
 				@JoinColumn(name = "iduser", nullable = false, updatable = false) })	
-	private Set<User> user;
+private Set<User> user;
 	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)

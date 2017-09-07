@@ -80,11 +80,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web-services</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+		
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-web</artifactId>
@@ -100,7 +96,6 @@
 		    <artifactId>jjwt</artifactId>
 		    <version>0.7.0</version>
 		</dependency>
-		
 		
 		<dependency>
 			<groupId>mysql</groupId>
@@ -158,11 +153,110 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+			<!-- <plugin>
+			<executions>
+				<execution>
+				  <id>install-node-npm</id>
+				  <goals>
+				    <goal>install-node-and-npm</goal>
+				  </goals>
+				  <configuration>
+				    <nodeVersion>v0.10.32</nodeVersion>
+				    <npmVersion>2.1.8</npmVersion>
+				  </configuration>
+				</execution>
+			</executions>
+			</plugin> -->
 			
+			<plugin>
+				<groupId>com.github.kongchen</groupId>
+				<artifactId>swagger-maven-plugin</artifactId>
+				<version>3.1.4</version>
+				<configuration>
+					<apiSources>
+						<apiSource>
+							<springmvc>true</springmvc>
+							<locations>com.company</locations>
+							<schemes>http</schemes>
+							<host>localhost:8080</host>
+							<basePath></basePath>
+							<info>
+								<title>REST API Documentation for Revmuzik</title>
+								<version>version 1.0</version>
+								<description>REST API Documentation for Revmuzik REST Library</description>
+								<termsOfService>
+									http://www.bilheteriarapida.com.br/terms
+								</termsOfService>
+								<contact>
+									<email>email</email>
+									<name>eliane</name>
+									<url>site</url>
+								</contact>
+								<license>
+									<url>licence</url>
+									<name>Revmuzik License Terms</name>
+								</license>
+							</info>
+							<!-- Support classpath or file absolute path here. 1) classpath e.g: 
+								"classpath:/markdown.hbs", "classpath:/templates/hello.html" 2) file e.g: 
+								"${basedir}/src/main/resources/markdown.hbs", "${basedir}/src/main/resources/template/hello.html" -->
+							<templatePath>${basedir}/templates/strapdown.html.hbs</templatePath>
+							<outputPath>${basedir}/generated/document.html</outputPath>
+							<swaggerDirectory>generated/swagger-ui</swaggerDirectory>
+						</apiSource>
+					</apiSources>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	
+	<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											com.github.kongchen
+										</groupId>
+										<artifactId>
+											swagger-maven-plugin
+										</artifactId>
+										<versionRange>
+											[3.1.0,)
+										</versionRange>
+										<goals>
+											<goal>generate</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 
 		<finalName>revMuzik</finalName>
+		
+		
 	</build>
 
 </project>

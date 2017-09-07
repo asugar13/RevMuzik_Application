@@ -1,0 +1,84 @@
+.results-page{
+
+	.results-header{
+		height: 299px;
+		opacity: 0.7;
+		background-image: linear-gradient(95deg, #3e034f, #a209cf 58%);
+		display: flex;
+	    flex-direction: column;
+	    justify-content: flex-end;
+	    padding-left: 150px;
+	    padding-right: 150px;
+
+		.glyphicon{
+			color: white;
+			font-size: 35px;
+		}
+
+		.form-inline{
+			align-self: center;
+    		margin-bottom: 95px;
+    		display: flex;
+    		width: 100%;
+		
+    		.form-group{
+    			width: 50%;
+    			align-items: center;
+    			display: flex;
+
+    			label{
+    				margin-bottom: 0px;
+    			}
+    			
+    			input.form-control{
+    				width: 84%;
+    				background-color: transparent !important;
+    				border: 2px solid #fff !important;
+    				color: #fff;
+    				border-radius: 0px;
+    			}
+
+    			#genre{
+					margin-left: 5px;
+    			}
+    		}
+		}
+
+		.nav{
+			border-bottom: none;
+
+			.search-active{
+				border-bottom: 5px solid #ddd;
+			}
+
+			li>a:hover{
+				cursor: pointer;
+				background-color: transparent;
+			}
+
+			a{
+				font-family: Lato;
+				font-weight: 500;
+				font-size: 20px;
+				line-height: 1.25;
+				color: #e9e1f4;
+			}
+		}
+	}
+
+	.results-body{
+		margin: 10px 10%;
+
+		.results-list{
+		    display: flex;
+		    flex-flow: row wrap;
+		    margin: 20px auto;
+		    justify-content: space-between;
+
+		    .result{
+		    	width: 30%;
+		    	margin-bottom: 55px;
+		    }
+		}
+	}
+}

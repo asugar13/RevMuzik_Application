@@ -73,10 +73,10 @@ public class User implements Serializable{
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "user_genre", 
-		joinColumns = {
-			@JoinColumn(name = "iduser", nullable = false, updatable = false) },
-		inverseJoinColumns = { 
-				@JoinColumn(name = "idgenre", nullable = false, updatable = false) })	
+				joinColumns = {
+					@JoinColumn(name = "iduser", nullable = false, updatable = false) },
+				inverseJoinColumns = { 
+					@JoinColumn(name = "idgenre", nullable = false, updatable = false) })	
 	private Set<Genre> genre;	
 
 	//add /bi-directional many-to-many association to SocialMedi Genre Media

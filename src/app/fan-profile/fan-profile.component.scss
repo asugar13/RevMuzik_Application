@@ -1,0 +1,81 @@
+.fan-profile{
+
+	.fan-profile-body{
+
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 50px;
+		border: 1px solid #707070;
+		padding-left: 0px;
+		padding-right: 0px;
+
+		.form-title{
+			background-color: #ebebeb;
+		    padding: 10px;
+		    color: #333333;
+		    font-weight: bold;
+		}
+
+		.profile-form-container{
+			padding: 10px;
+
+			.fan-profile-form{
+				.form-group input{
+					border: 1px solid #707070;
+					margin-left: 10px;
+				}
+
+				.action-buttons{
+				    display: flex;
+    				justify-content: space-around;
+
+    				.btn{
+    					width: 168px;
+    				}
+
+    				.btn-save{
+    					background-color: #7401e6;
+    					color: #fff;
+    				}
+
+    				.btn-cancel{
+    					background-color: #929496;
+    					color: #fff;
+    				}
+				}
+			}
+		}
+	}
+
+	@media (min-width: 768px){ 
+		.cover-photo{
+			background-color: #959595;
+	    	height: 275px;
+		}
+
+		.profile-photo{
+			margin-left: 20%;
+		    top: 130px;
+		    position: relative;
+		}
+
+		.container {
+	    	max-width: 60%;
+		}
+		
+		.fan-profile-body{
+			margin-top: 90px;
+		}
+
+		.form-group{
+			margin-left: 20px;
+			display: flex;
+		    justify-content: space-between;
+		    width: 90%;
+
+		    input{
+		    	width: 70%;
+		    }
+		}
+	}
+}

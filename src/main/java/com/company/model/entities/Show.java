@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -37,15 +38,22 @@ public class Show implements Serializable {
 	@Column(name="start_date_time")
 	private Date startDateTime;
 
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idvenue", nullable = false)	
-	private Venue venue;
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "show_artist", 
+		joinColumns = {
+			@JoinColumn(name = "idshow", nullable = false, updatable = false) },
+		inverseJoinColumns = { 
+				@JoinColumn(name = "idartist", nullable = false, updatable = false) })	
+	private Set<Artist> artist;	
 	
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idartist", nullable = false)	
-	private Artist artist;
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "show_venue", 
+		joinColumns = {
+			@JoinColumn(name = "idshow", nullable = false, updatable = false) },
+		inverseJoinColumns = { 
+				@JoinColumn(name = "idvenue", nullable = false, updatable = false) })	
+	private Set<Venue> venue;	
 
 	public Show() {
 	}
@@ -92,25 +100,20 @@ public class Show implements Serializable {
 		this.startDateTime = startDateTime;
 	}
 
-
-	public Venue getVenue() {
-		return venue;
-	}
-
-
-	public void setVenue(Venue venue) {
-		this.venue = venue;
-	}
-
-
-	public Artist getArtist() {
+	public Set<Artist> getArtist() {
 		return artist;
 	}
 
-
-	public void setArtist(Artist artist) {
+	public void setArtist(Set<Artist> artist) {
 		this.artist = artist;
 	}
+
+	public Set<Venue> getVenue() {
+		return venue;
+	}
 	
+	public void setVenue(Set<Venue> venue) {
+		this.venue = venue;
+	}
 	
 }
