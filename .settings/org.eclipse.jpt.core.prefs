@@ -1,3 +1,7 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 org.eclipse.jpt.core.platform=hibernate2_1
+=======
+org.eclipse.jpt.core.platform=eclipselink2_5
+>>>>>>> d2b6abd701cad57ec710f0b387060bc2f47b2822
 org.eclipse.jpt.jpa.core.discoverAnnotatedClasses=false

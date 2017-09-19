@@ -64,7 +64,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
              .antMatchers("/").permitAll()
              
              //shows
+<<<<<<< HEAD
             // .antMatchers( "/api/v1/shows/**" ).hasAnyAuthority("SHOWS_LIST,SHOWS_CREATE,SHOWS_EDIT,SHOWS_DELETE")
+=======
+             .antMatchers( "/api/v1/venues/**" ).hasAnyAuthority("VENUES_LIST,VENUES_CREATE,VENUES_EDIT,VENUES_DELETE")
+>>>>>>> d2b6abd701cad57ec710f0b387060bc2f47b2822
              .antMatchers( "/api/v1/users/**" ).hasAnyAuthority("USERS_LIST,USERS_CREATE,USERS_EDIT,USERS_DELETE")
              
                           
@@ -80,5 +84,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             // .addFilterBefore(new JWTLoginFilter("/api/v1/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
              // And filter other requests to check the presence of JWT in header
             // .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+<<<<<<< HEAD
      }*/
+
 }
