@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.company.model.entities.Show;
 import com.company.resources.ShowResource;
 import com.company.service.ShowService;
+import com.company.service.VenueService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,8 +28,10 @@ public class ShowResourceImpl implements ShowResource{
 	
 	@Autowired
 	private ShowService service;
+	@Autowired
+	private VenueService serviceVenue;
 	
-	@ApiOperation(value = "Retrieves a list of shows", tags = { "show" }, code = 200)
+	@ApiOperation(value = "Retrieves entire list of shows", tags = { "show" }, code = 200)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Retrieves a list of gigs", responseContainer = "List", response = Show.class),
 			@ApiResponse(code = 204, message = "No content retrieve", responseContainer = "List", response = Void.class) })
@@ -43,6 +46,7 @@ public class ShowResourceImpl implements ShowResource{
 
 		return new ResponseEntity<List<Show>>(shows, HttpStatus.OK);
 	}
+	
 
 	@ApiOperation(value = "Get a shows by id", tags = { "show" }, code = 200)
 	@ApiResponses(value = {
@@ -59,6 +63,22 @@ public class ShowResourceImpl implements ShowResource{
 		return new ResponseEntity<Show>(show, HttpStatus.OK);
 	}
 
+	@ApiOperation(value = "Get a shows by locationid", tags = { "showsByCity" }, code = 200)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Retrieve a show searched by locationid", response = Show.class),
+			@ApiResponse(code = 204, message = "No content retrieve searched by locationid", response = Void.class) })
+	@Override
+	@RequestMapping(value = "/{cc_fips}", method = RequestMethod.GET)
+	public ResponseEntity<List<Show>> showsByCity(@ApiParam(value = "City Id", required = true) @PathVariable("cc_fips") Long cc_fips) {	
+		List<Long> venuesId = serviceVenue.venuesByCity(String.valueOf(cc_fips));//idcidade
+		List<Show> shows = service.showsByVenues(venuesId);//idcidade
+		
+		if (null == shows)
+			return new ResponseEntity<List<Show>>(HttpStatus.NO_CONTENT);
+
+		return new ResponseEntity<List<Show>>(shows, HttpStatus.OK);
+	}
+	
 	@Override
 	public ResponseEntity<Show> create(Show show) {
 		// TODO Auto-generated method stub

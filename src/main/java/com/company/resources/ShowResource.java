@@ -15,5 +15,7 @@ public interface ShowResource {
 	ResponseEntity<Show> update(Show show);
 
 	ResponseEntity<Show> delete(Long id);
+	
+	ResponseEntity<List<Show>> showsByCity(Long cc_fips);
 
 }

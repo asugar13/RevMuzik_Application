@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.company.model.entities.Show;
 import com.company.model.entities.Venue;
 import com.company.repository.VenueRepository;
 import com.company.service.VenueService;
@@ -56,5 +57,10 @@ public class VenueServiceImpl implements VenueService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	@Override
+	public List<Long> venuesByCity(String idCity) {
+		return repository.findVenuesIdByCity(idCity);
+	}
+	
 }

@@ -56,10 +56,12 @@ public class User implements Serializable{
 	
 	@JsonIgnore
 	@OneToOne
+	@JoinColumn(name = "idprofile", nullable = false)
 	private Profile profile;
 	
 	@JsonIgnore
 	@OneToOne
+	@JoinColumn(name = "idtype_user", nullable = false)
 	private TypeUser typeuser;
 
 	

@@ -13,12 +13,16 @@ public interface ShowService {
 
 	Show get(Long id);
 	
+	Show getShowByLocationGenreArtistVenue(Long id);
+	
 	Show insert(Show Show);
 
 	Show update(Show Show);
 
 	Show delete(Long id);
 
-	Page<Show> findAllByPage(int page, Sort.Direction direction);	
+	Page<Show> findAllByPage(int page, Sort.Direction direction);
+
+	List<Show> showsByVenues(List<Long> cc_fips);	
 
 }

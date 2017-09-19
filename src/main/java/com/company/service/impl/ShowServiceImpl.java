@@ -50,5 +50,17 @@ public class ShowServiceImpl implements ShowService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public List<Show> showsByVenues(List<Long> idsVenues) {
+		return repository.findShowsbyVenues(idsVenues);
+	}
+
+	@Override
+	public Show getShowByLocationGenreArtistVenue(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

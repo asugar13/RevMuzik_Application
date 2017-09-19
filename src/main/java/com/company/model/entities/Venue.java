@@ -57,6 +57,13 @@ public class Venue implements Serializable {
 	@Column(name="url")
 	private String url;
 	
+	@Column(name="location")
+	private String location;
+	
+	@Column(name="cc_fips")
+	private String cc_fips;
+	
+	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "venue")
 	private List<Show> show;
@@ -159,6 +166,14 @@ private Set<User> user;
 		this.url = url;
 	}
 	
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
 	public boolean isEnable() {
 		return enable;
 	}
@@ -198,6 +213,14 @@ private Set<User> user;
 
 	public void setSocialMedia(SocialMedia socialMedia) {
 		this.socialMedia = socialMedia;
+	}
+
+	public String getCc_fips() {
+		return cc_fips;
+	}
+
+	public void setCc_fips(String cc_fips) {
+		this.cc_fips = cc_fips;
 	}
 
 

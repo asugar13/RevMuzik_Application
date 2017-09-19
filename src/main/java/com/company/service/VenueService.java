@@ -22,6 +22,7 @@ public interface VenueService {
 	Venue delete(Long id);
 
 	Page<Venue> findAllByPage(int page, Sort.Direction direction);	
-
+	
+	List<Long> venuesByCity(String idCity);
 
 }

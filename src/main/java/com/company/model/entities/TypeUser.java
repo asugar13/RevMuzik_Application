@@ -17,6 +17,7 @@ public class TypeUser implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="idtype_user")
 	private Long idtypeUser;
 
 	@NotNull
