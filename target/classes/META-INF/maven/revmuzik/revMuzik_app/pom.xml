@@ -80,15 +80,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web-services</artifactId>
 		</dependency>
-<<<<<<< HEAD
 		
-=======
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-		</dependency>
->>>>>>> d2b6abd701cad57ec710f0b387060bc2f47b2822
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-web</artifactId>
@@ -105,10 +97,6 @@
 		    <version>0.7.0</version>
 		</dependency>
 		
-<<<<<<< HEAD
-=======
-		
->>>>>>> d2b6abd701cad57ec710f0b387060bc2f47b2822
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -165,7 +153,6 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
-<<<<<<< HEAD
 			<!-- <plugin>
 			<executions>
 				<execution>
@@ -270,13 +257,6 @@
 		<finalName>revMuzik</finalName>
 		
 		
-=======
-			
-		</plugins>
-	
-
-		<finalName>revMuzik</finalName>
->>>>>>> d2b6abd701cad57ec710f0b387060bc2f47b2822
 	</build>
 
 </project>

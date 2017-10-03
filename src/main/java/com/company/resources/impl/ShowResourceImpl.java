@@ -68,11 +68,11 @@ public class ShowResourceImpl implements ShowResource{
 			@ApiResponse(code = 200, message = "Retrieve a show searched by locationid", response = Show.class),
 			@ApiResponse(code = 204, message = "No content retrieve searched by locationid", response = Void.class) })
 	@Override
-	@RequestMapping(value = "/{cc_fips}", method = RequestMethod.GET)
+	@RequestMapping(value = "/city/{cc_fips}", method = RequestMethod.GET)
 	public ResponseEntity<List<Show>> showsByCity(@ApiParam(value = "City Id", required = true) @PathVariable("cc_fips") Long cc_fips) {	
 		List<Long> venuesId = serviceVenue.venuesByCity(String.valueOf(cc_fips));//idcidade
 		List<Show> shows = service.showsByVenues(venuesId);//idcidade
-		
+		//List<Show> shows = null;
 		if (null == shows)
 			return new ResponseEntity<List<Show>>(HttpStatus.NO_CONTENT);
 

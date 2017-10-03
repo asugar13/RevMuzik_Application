@@ -26,12 +26,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.authenticationProvider(this.customAuthenticationProvider);
 	}
 	
-	@Override
+	/*@Override
     protected void configure(HttpSecurity http) throws Exception {
         // disable caching
    	 http.headers().cacheControl();
         
-   	 /*ROUTING SECURITY*/
+   	 /*ROUTING SECURITY
         http.csrf().disable() // disable csrf for our requests.
         	 .cors().and()
             .authorizeRequests()
@@ -50,25 +50,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .addFilterBefore(new JWTLoginFilter("/api/v1/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
             // And filter other requests to check the presence of JWT in header
             .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-    }
+    }*/
 
-     /*@Override
+     @Override
      protected void configure(HttpSecurity http) throws Exception {
          // disable caching
     	 http.headers().cacheControl();
          
-    	 /*ROUTING SECURITY
+    	 /*ROUTING SECURITY*/
          http.csrf().disable() // disable csrf for our requests.
          	 .cors().and()
              .authorizeRequests()
              .antMatchers("/").permitAll()
              
              //shows
-<<<<<<< HEAD
             // .antMatchers( "/api/v1/shows/**" ).hasAnyAuthority("SHOWS_LIST,SHOWS_CREATE,SHOWS_EDIT,SHOWS_DELETE")
-=======
              .antMatchers( "/api/v1/venues/**" ).hasAnyAuthority("VENUES_LIST,VENUES_CREATE,VENUES_EDIT,VENUES_DELETE")
->>>>>>> d2b6abd701cad57ec710f0b387060bc2f47b2822
              .antMatchers( "/api/v1/users/**" ).hasAnyAuthority("USERS_LIST,USERS_CREATE,USERS_EDIT,USERS_DELETE")
              
                           
@@ -84,7 +81,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             // .addFilterBefore(new JWTLoginFilter("/api/v1/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
              // And filter other requests to check the presence of JWT in header
             // .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-<<<<<<< HEAD
-     }*/
+     }
 
 }

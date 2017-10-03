@@ -25,7 +25,7 @@ public interface VenueRepository extends JpaRepository<Venue, Long>{
 	@Query("SELECT v FROM Venue v WHERE v.cc_fips = :cc_fips")
 	List<Venue> findVenuesByCity(@Param("cc_fips") Long cc_fips);
 	
-	@Query(value = "SELECT s.idvenue FROM Venue WHERE s.idvenue in(SELECT v.idvenue FROM venue_worldcities WHERE v.cc_fips =:'cc_fips')", nativeQuery = true)
-	List<Long> findVenuesIdByCity(@Param("idCity") String cc_fips);
+	@Query(value = "SELECT v.idvenue FROM Venue v WHERE v.idvenue in(SELECT vw.idvenue FROM venue_worldcities vw WHERE vw.cc_fips =:cc_fips)", nativeQuery = true)
+	List<Long> findVenuesIdByCity(@Param("cc_fips")  String cc_fips);
 	
 }
