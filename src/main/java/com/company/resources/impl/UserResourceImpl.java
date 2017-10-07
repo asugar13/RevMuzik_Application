@@ -75,19 +75,6 @@ public class UserResourceImpl implements UserResource {
 	@Override
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ResponseEntity<User> create(@ApiParam(value = "User json stream resource", required = true, name = "user") @Valid @RequestBody User user) {
-		Profile profile = new Profile();
-		profile.setIdprofile(new Long(0));
-		profile.setName("ADMIN");
-		TypeUser typeuser = new TypeUser();
-		typeuser.setIdtypeUser(new Long(0));
-		List<Genre> listgenre = new ArrayList<Genre>();
-		Genre genre = new Genre();
-		genre.setIdgenre(new Long(0));
-		genre.setDescription("Rock");
-		listgenre.add(genre);
-		user.setProfile(profile);
-		user.setTypeuser(typeuser);
-		user.setGenre(listgenre);
 		User created = service.insert(user);
 
 		if (null == created)

@@ -54,20 +54,20 @@ public class User implements Serializable{
 	@Type(type="yes_no")
 	public boolean enable;
 	
-	@JsonIgnore
+	//@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "idprofile", nullable = false)
 	private Profile profile;
 	
-	@JsonIgnore
+	//@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "idtype_user", nullable = false)
 	private TypeUser typeuser;
 
 	
-	@JsonIgnore
+	/*@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private List<Venue> venue;
+	private List<Venue> venue;*/
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "user_genre", 
@@ -128,14 +128,14 @@ public class User implements Serializable{
 	}
 
 
-	public List<Venue> getVenue() {
+	/*public List<Venue> getVenue() {
 		return venue;
 	}
 
 	public void setVenue(List<Venue> venue) {
 		this.venue = venue;
 	}
-
+*/
 	public boolean isEnable() {
 		return enable;
 	}
