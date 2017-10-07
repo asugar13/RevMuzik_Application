@@ -67,10 +67,6 @@ public class User implements Serializable{
 	
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private List<Artist> artist;
-	
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Venue> venue;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -79,7 +75,7 @@ public class User implements Serializable{
 					@JoinColumn(name = "iduser", nullable = false, updatable = false) },
 				inverseJoinColumns = { 
 					@JoinColumn(name = "idgenre", nullable = false, updatable = false) })	
-	private Set<Genre> genre;	
+	private List<Genre> genre;	
 
 	//add /bi-directional many-to-many association to SocialMedi Genre Media
 	
@@ -131,14 +127,6 @@ public class User implements Serializable{
 		this.userPassword = userPassword;
 	}
 
-	
-	public List<Artist> getArtist() {
-		return artist;
-	}
-
-	public void setArtist(List<Artist> artist) {
-		this.artist = artist;
-	}
 
 	public List<Venue> getVenue() {
 		return venue;
@@ -173,11 +161,12 @@ public class User implements Serializable{
 		this.typeuser = typeuser;
 	}
 
-	public Set<Genre> getGenre() {
+
+	public List<Genre> getGenre() {
 		return genre;
 	}
 
-	public void setGenre(Set<Genre> genre) {
+	public void setGenre(List<Genre> genre) {
 		this.genre = genre;
 	}
 

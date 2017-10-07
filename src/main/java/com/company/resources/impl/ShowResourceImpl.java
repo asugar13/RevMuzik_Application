@@ -2,10 +2,13 @@ package com.company.resources.impl;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -78,11 +81,22 @@ public class ShowResourceImpl implements ShowResource{
 		return new ResponseEntity<List<Show>>(shows, HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "Create a user resource", tags = { "show" }, code = 200)
+	@ApiResponses(value = {
+			@ApiResponse(code = 201, message = "Retrieve a created user resource", response = Show.class),
+			@ApiResponse(code = 400, message = "Bad Request", response = Void.class),
+			@ApiResponse(code = 304, message = "Not modified retrieve if no user was created", response = Void.class) })
 	@Override
-	public ResponseEntity<Show> create(Show show) {
-		// TODO Auto-generated method stub
-		return null;
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public ResponseEntity<Show> create(@ApiParam(value = "User json stream resource", required = true) @Valid @RequestBody Show show) {
+		Show created = service.insert(show);
+
+		if (null == created)
+			return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+
+		return new ResponseEntity<Show>(created, HttpStatus.CREATED);
 	}
+	
 
 	@Override
 	public ResponseEntity<Show> update(Show show) {

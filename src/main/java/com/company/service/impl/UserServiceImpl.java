@@ -38,7 +38,8 @@ public class UserServiceImpl implements UserService {
 		String email = (String)authentication.getPrincipal(); 
 		User user = repository.findByEmail( email );
 		if ( user != null ) {
-			Iterator<Artist> showIterator = user.getArtist().iterator();
+			//Iterator<Artist> showIterator = user.getArtist().iterator();
+			Iterator<Artist> showIterator  = null;
 			while ( showIterator.hasNext() ) {
 				if ( showIterator.next().getIdartist().equals( showId ) ) {
 					return true;

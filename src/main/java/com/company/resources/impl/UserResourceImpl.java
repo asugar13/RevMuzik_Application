@@ -1,6 +1,8 @@
 package com.company.resources.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.company.model.entities.Genre;
+import com.company.model.entities.Profile;
+import com.company.model.entities.TypeUser;
 import com.company.model.entities.User;
 import com.company.resources.UserResource;
 import com.company.service.UserService;
@@ -69,7 +74,20 @@ public class UserResourceImpl implements UserResource {
 			@ApiResponse(code = 304, message = "Not modified retrieve if no user was created", response = Void.class) })
 	@Override
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ResponseEntity<User> create(@ApiParam(value = "User json stream resource", required = true) @Valid @RequestBody User user) {
+	public ResponseEntity<User> create(@ApiParam(value = "User json stream resource", required = true, name = "user") @Valid @RequestBody User user) {
+		Profile profile = new Profile();
+		profile.setIdprofile(new Long(0));
+		profile.setName("ADMIN");
+		TypeUser typeuser = new TypeUser();
+		typeuser.setIdtypeUser(new Long(0));
+		List<Genre> listgenre = new ArrayList<Genre>();
+		Genre genre = new Genre();
+		genre.setIdgenre(new Long(0));
+		genre.setDescription("Rock");
+		listgenre.add(genre);
+		user.setProfile(profile);
+		user.setTypeuser(typeuser);
+		user.setGenre(listgenre);
 		User created = service.insert(user);
 
 		if (null == created)
