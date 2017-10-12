@@ -73,13 +73,10 @@ public class UserServiceImpl implements UserService {
 		if (null == persisted)
 			return null;
 		
-		//persisted.setUserEmail( user.getUserEmail());
 		persisted.setUserName( user.getUserName());
 		persisted.setUserFirstName( user.getUserFirstName());
 		persisted.setUserLastName(user.getUserLastName());
 		persisted.setEnable( user.isEnable() );
-		persisted.setProfile( user.getProfile() );
-		//persisted.setShows( user.getShows() );
 
 		return repository.save(persisted);
 	}

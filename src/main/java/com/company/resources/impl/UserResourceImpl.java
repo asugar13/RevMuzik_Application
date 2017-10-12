@@ -75,6 +75,7 @@ public class UserResourceImpl implements UserResource {
 	@Override
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ResponseEntity<User> create(@ApiParam(value = "User json stream resource", required = true, name = "user") @Valid @RequestBody User user) {
+		
 		User created = service.insert(user);
 
 		if (null == created)
@@ -123,8 +124,9 @@ public class UserResourceImpl implements UserResource {
 			@ApiResponse(code = 204, message = "No content retrieve, deleted user resource", response = User.class),
 			@ApiResponse(code = 404, message = "Not found retrieve if no delete was process", response = Void.class) })
 	@Override
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<User> delete(@ApiParam(value = "User Id", required = true) @PathVariable("id") Long id) {
+		
 		User persisted = service.delete(id);
 
 		if (null == persisted)
