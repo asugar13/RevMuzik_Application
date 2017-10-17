@@ -58,6 +58,7 @@ public class ShowResourceImpl implements ShowResource{
 	@Override
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Show> get(@ApiParam(value = "Show Id", required = true) @PathVariable("id") Long id) {
+		
 		Show show = service.get(id);
 
 		if (null == show)
@@ -81,14 +82,15 @@ public class ShowResourceImpl implements ShowResource{
 		return new ResponseEntity<List<Show>>(shows, HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "Create a user resource", tags = { "show" }, code = 200)
+	@ApiOperation(value = "Create a show resource", tags = { "show" }, code = 200)
 	@ApiResponses(value = {
-			@ApiResponse(code = 201, message = "Retrieve a created user resource", response = Show.class),
+			@ApiResponse(code = 201, message = "Retrieve a created show resource", response = Show.class),
 			@ApiResponse(code = 400, message = "Bad Request", response = Void.class),
-			@ApiResponse(code = 304, message = "Not modified retrieve if no user was created", response = Void.class) })
+			@ApiResponse(code = 304, message = "Not modified retrieve if no show was created", response = Void.class) })
 	@Override
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ResponseEntity<Show> create(@ApiParam(value = "User json stream resource", required = true) @Valid @RequestBody Show show) {
+	public ResponseEntity<Show> create(@ApiParam(value = "Show json stream resource", required = true) @Valid @RequestBody Show show) {
+		
 		Show created = service.insert(show);
 
 		if (null == created)
@@ -98,17 +100,38 @@ public class ShowResourceImpl implements ShowResource{
 	}
 	
 
+	@ApiOperation(value = "Update a show resource", tags = { "show" }, code = 200)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Retrieve an updated show resource", response = Show.class),
+			@ApiResponse(code = 400, message = "Bad Request", response = Void.class),
+			@ApiResponse(code = 404, message = "Not found retrieve if no update was process", response = Void.class) })
 	@Override
-	public ResponseEntity<Show> update(Show show) {
-		// TODO Auto-generated method stub
-		return null;
+	@RequestMapping(value = "/update", method = RequestMethod.PUT)
+	public ResponseEntity<Show> update(@ApiParam(value = "Show json stream resource", required = true) @RequestBody Show show) {
+		
+		Show persisted = service.update(show);
+
+		if (null == persisted)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+		return new ResponseEntity<Show>(persisted, HttpStatus.OK);
 	}
 
+	@ApiOperation(value = "Delete a show resource", tags = { "show" }, code = 204)
+	@ApiResponses(value = {
+			@ApiResponse(code = 204, message = "No content retrieve, deleted show resource", response = Show.class),
+			@ApiResponse(code = 404, message = "Not found retrieve if no delete was process", response = Void.class) })
 	@Override
-	public ResponseEntity<Show> delete(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Show> delete(@ApiParam(value = "Show Id", required = true) @PathVariable("id") Long id) {
+		
+		Show persisted = service.delete(id);
+
+		if (null == persisted)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}	
 
 
 }
