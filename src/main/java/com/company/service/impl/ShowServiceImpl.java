@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.company.model.entities.Show;
+import com.company.model.entities.Venue;
 import com.company.repository.ShowRepository;
 import com.company.service.ShowService;
 
@@ -29,20 +30,34 @@ public class ShowServiceImpl implements ShowService {
 
 	@Override
 	public Show insert(Show show) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.save( show );
 	}
 
 	@Override
-	public Show update(Show Show) {
-		// TODO Auto-generated method stub
-		return null;
+	public Show update(Show show) {
+
+		Show persisted = repository.findOne(show.getIdshow());
+
+		if (null == persisted)
+			return null;
+		
+		persisted.setArtist( show.getArtist());
+		persisted.setDescription(show.getDescription());
+		persisted.setStartDateTime(show.getStartDateTime());
+		//persisted.setVenue(show.getVenue()() );
+
+		return repository.save(persisted);
 	}
 
 	@Override
 	public Show delete(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Show persisted = repository.findOne( id );
+
+		if (null == persisted)
+			return null;
+		
+		repository.delete( persisted );
+		return persisted;
 	}
 
 	@Override

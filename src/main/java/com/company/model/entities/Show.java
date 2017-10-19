@@ -45,7 +45,7 @@ public class Show implements Serializable {
 			@JoinColumn(name = "idshow", nullable = false, updatable = false) },
 		inverseJoinColumns = { 
 				@JoinColumn(name = "idartist", nullable = false, updatable = false) })	
-	private Set<Artist> artist;	
+	private List<Artist> artist;	
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "show_venue", 
@@ -53,16 +53,14 @@ public class Show implements Serializable {
 			@JoinColumn(name = "idshow", nullable = false, updatable = false) },
 		inverseJoinColumns = { 
 				@JoinColumn(name = "idvenue", nullable = false, updatable = false) })	
-	private Set<Venue> venue;	
+	private List<Venue> venue;	
 
 	public Show() {
 	}
 
-	
 	public Long getIdshow() {
 		return idshow;
 	}
-
 
 	public void setIdshow(Long idshow) {
 		this.idshow = idshow;
@@ -100,19 +98,19 @@ public class Show implements Serializable {
 		this.startDateTime = startDateTime;
 	}
 
-	public Set<Artist> getArtist() {
+	public List<Artist> getArtist() {
 		return artist;
 	}
 
-	public void setArtist(Set<Artist> artist) {
+	public void setArtist(List<Artist> artist) {
 		this.artist = artist;
 	}
 
-	public Set<Venue> getVenue() {
+	public List<Venue> getVenue() {
 		return venue;
 	}
-	
-	public void setVenue(Set<Venue> venue) {
+
+	public void setVenue(List<Venue> venue) {
 		this.venue = venue;
 	}
 	

@@ -16,8 +16,6 @@ public interface VenueService {
 	Venue insert(Venue venue);
 
 	Venue update(Venue venue);
-	
-	Venue updatePassword(Venue venue);
 
 	Venue delete(Long id);
 

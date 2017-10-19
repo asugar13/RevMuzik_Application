@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.company.model.entities.Show;
+import com.company.model.entities.User;
 import com.company.model.entities.Venue;
 import com.company.repository.VenueRepository;
 import com.company.service.VenueService;
@@ -30,26 +30,34 @@ public class VenueServiceImpl implements VenueService {
 
 	@Override
 	public Venue insert(Venue venue) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.save( venue );
 	}
 
 	@Override
 	public Venue update(Venue venue) {
-		// TODO Auto-generated method stub
-		return null;
+		Venue persisted = repository.findOne(venue.getIdvenue());
+
+		if (null == persisted)
+			return null;
+		
+		persisted.setCapacity( venue.getCapacity());
+		persisted.setDescription( venue.getDescription());
+		persisted.setPhoneNumber(venue.getPhoneNumber());
+		persisted.setCc_fips( venue.getCc_fips() );
+
+		return repository.save(persisted);
 	}
 
-	@Override
-	public Venue updatePassword(Venue venue) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Venue delete(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Venue persisted = repository.findOne( id );
+
+		if (null == persisted)
+			return null;
+		
+		repository.delete( persisted );
+		return persisted;
 	}
 
 	@Override

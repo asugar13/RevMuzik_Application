@@ -64,9 +64,9 @@ public class Venue implements Serializable {
 	private String cc_fips;
 	
 	
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "venue")
-	private List<Show> show;
+	//@JsonIgnore
+	//@OneToMany(fetch = FetchType.LAZY, mappedBy = "venue")
+	//private List<Show> show;
 	
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -75,9 +75,9 @@ public class Venue implements Serializable {
 			@JoinColumn(name = "idvenue", nullable = false, updatable = false) },
 		inverseJoinColumns = { 
 				@JoinColumn(name = "iduser", nullable = false, updatable = false) })	
-private Set<User> user;
+	private List<User> user;
 	
-	@JsonIgnore
+	//@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idsocial_media", nullable = false)	
 	private SocialMedia socialMedia;
@@ -190,20 +190,11 @@ private Set<User> user;
 		this.idStyle = idStyle;
 	}
 
-	public List<Show> getShow() {
-		return show;
-	}
-
-	public void setShow(List<Show> show) {
-		this.show = show;
-	}
-
-
-	public Set<User> getUser() {
+	public List<User> getUser() {
 		return user;
 	}
 
-	public void setUser(Set<User> user) {
+	public void setUser(List<User> user) {
 		this.user = user;
 	}
 
