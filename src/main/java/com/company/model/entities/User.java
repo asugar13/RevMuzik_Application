@@ -69,7 +69,7 @@ public class User implements Serializable{
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Venue> venue;*/
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinTable(name = "user_genre", 
 				joinColumns = {
 					@JoinColumn(name = "iduser", nullable = false, updatable = false) },

@@ -69,7 +69,7 @@ public class Venue implements Serializable {
 	//private List<Show> show;
 	
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinTable(name = "venue_user", 
 		joinColumns = {
 			@JoinColumn(name = "idvenue", nullable = false, updatable = false) },

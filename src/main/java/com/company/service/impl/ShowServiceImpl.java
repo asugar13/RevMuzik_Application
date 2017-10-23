@@ -41,10 +41,12 @@ public class ShowServiceImpl implements ShowService {
 		if (null == persisted)
 			return null;
 		
-		persisted.setArtist( show.getArtist());
+		persisted.setName(show.getName());
 		persisted.setDescription(show.getDescription());
 		persisted.setStartDateTime(show.getStartDateTime());
-		//persisted.setVenue(show.getVenue()() );
+		persisted.setEndDateTime(show.getEndDateTime());
+		persisted.setArtist( show.getArtist());
+		persisted.setVenue(show.getVenue());
 
 		return repository.save(persisted);
 	}

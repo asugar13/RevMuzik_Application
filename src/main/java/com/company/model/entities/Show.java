@@ -39,7 +39,7 @@ public class Show implements Serializable {
 	private Date startDateTime;
 
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinTable(name = "show_artist", 
 		joinColumns = {
 			@JoinColumn(name = "idshow", nullable = false, updatable = false) },
@@ -47,7 +47,7 @@ public class Show implements Serializable {
 				@JoinColumn(name = "idartist", nullable = false, updatable = false) })	
 	private List<Artist> artist;	
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinTable(name = "show_venue", 
 		joinColumns = {
 			@JoinColumn(name = "idshow", nullable = false, updatable = false) },
