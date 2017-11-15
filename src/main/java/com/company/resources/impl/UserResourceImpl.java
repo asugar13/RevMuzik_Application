@@ -1,9 +1,6 @@
 package com.company.resources.impl;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.company.model.entities.Genre;
-import com.company.model.entities.Profile;
-import com.company.model.entities.TypeUser;
 import com.company.model.entities.User;
+import com.company.model.entities.Genre;
+import com.company.repository.GenreRepository;
 import com.company.resources.UserResource;
 import com.company.service.UserService;
 import io.swagger.annotations.Api;
@@ -34,6 +30,8 @@ public class UserResourceImpl implements UserResource {
 	
 	@Autowired
 	private UserService service;
+	@Autowired
+	private GenreRepository repository;
 	
 	@ApiOperation(value = "Retrieves a list of users", tags = { "user" }, code = 200)
 	@ApiResponses(value = {
@@ -60,7 +58,10 @@ public class UserResourceImpl implements UserResource {
 	public ResponseEntity<User> get(@ApiParam(value = "User Id", required = true) @PathVariable("id") Long id) {
 		
 		User user = service.get(id);
-
+	    List<Genre> genre = repository.findListGenreById(user.getId());
+	    
+	    if (user !=null && genre !=null)
+		    user.setGenre(genre);
 		if (null == user)
 			return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
 

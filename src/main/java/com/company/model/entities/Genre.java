@@ -13,8 +13,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * 
  */
 @Entity
-@NamedQuery(name="Genre.findAll", query="SELECT g FROM Genre g")
+//@NamedQuery(name="Genre.findAll", query="SELECT g FROM Genre g")
+@Table(name = "Genre")
 public class Genre implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -32,7 +34,7 @@ public class Genre implements Serializable {
 	private List<Song> song;
 	
 	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "genre")
+	@ManyToMany(mappedBy = "genre")
 	private List<User> user;
 	
 	

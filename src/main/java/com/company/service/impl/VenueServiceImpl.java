@@ -43,6 +43,7 @@ public class VenueServiceImpl implements VenueService {
 		persisted.setCapacity( venue.getCapacity());
 		persisted.setDescription( venue.getDescription());
 		persisted.setPhoneNumber(venue.getPhoneNumber());
+		persisted.setLocation(venue.getLocation());
 		persisted.setCc_fips( venue.getCc_fips() );
 
 		return repository.save(persisted);

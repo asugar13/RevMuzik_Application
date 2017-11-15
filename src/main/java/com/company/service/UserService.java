@@ -27,6 +27,7 @@ public interface UserService {
 
 	User delete(Long id);
 
-	Page<User> findAllByPage(int page, int limit, String order, Sort.Direction direction);	
+	Page<User> findAllByPage(int page, int limit, String order, Sort.Direction direction);
+		
 
 }

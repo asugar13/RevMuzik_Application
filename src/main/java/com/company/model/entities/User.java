@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.WhereJoinTable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -69,12 +70,10 @@ public class User implements Serializable{
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Venue> venue;*/
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+	@ManyToMany
 	@JoinTable(name = "user_genre", 
-				joinColumns = {
-					@JoinColumn(name = "iduser", nullable = false, updatable = false) },
-				inverseJoinColumns = { 
-					@JoinColumn(name = "idgenre", nullable = false, updatable = false) })	
+				joinColumns = {@JoinColumn(name = "iduser", referencedColumnName="iduser") },
+				inverseJoinColumns = {@JoinColumn(name = "idgenre", referencedColumnName="idgenre") })	
 	private List<Genre> genre;	
 
 	//add /bi-directional many-to-many association to SocialMedi Genre Media

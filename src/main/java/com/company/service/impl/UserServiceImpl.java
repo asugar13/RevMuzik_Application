@@ -3,9 +3,6 @@ package com.company.service.impl;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort.Direction;
@@ -18,7 +15,6 @@ import com.company.model.entities.User;
 import com.company.repository.UserRepository;
 import com.company.service.UserService;
 import com.company.model.entities.Artist;
-import com.company.model.entities.Show;
 
 
 @Service
@@ -26,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository repository;
-	
+
 	@Override
 	public User login(String email, String password) {
 		return null;
@@ -56,13 +52,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User get(Long id) {
-		return repository.findOne( id );
+	   User user = repository.findOne(id);
+	   return user;
 	}
 
 	@Transactional
 	@Override
 	public User insert(User user) {
-		return repository.save( user );
+		return repository.save(user);
 	}
 
 	@Transactional
