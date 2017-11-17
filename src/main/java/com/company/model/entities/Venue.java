@@ -64,11 +64,6 @@ public class Venue implements Serializable {
 	private String cc_fips;
 	
 	
-	//@JsonIgnore
-	//@OneToMany(fetch = FetchType.LAZY, mappedBy = "venue")
-	//private List<Show> show;
-	
-	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinTable(name = "venue_user", 
 		joinColumns = {

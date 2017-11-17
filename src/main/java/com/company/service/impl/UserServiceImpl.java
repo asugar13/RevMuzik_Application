@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public User update(User user) {
-		User persisted = repository.findOne( user.getId() );
+		User persisted = repository.findOne( user.getIduser() );
 
 		if (null == persisted)
 			return null;
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public User updatePassword(User user) {
-		User persisted = repository.findOne( user.getId() );
+		User persisted = repository.findOne( user.getIduser() );
 
 		if (null == persisted)
 			return null;

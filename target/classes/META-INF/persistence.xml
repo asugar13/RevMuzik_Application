@@ -6,5 +6,6 @@
 		<class>com.company.model.entities.Authority</class>
 		<class>com.company.model.entities.User</class>
 		<class>com.company.model.entities.Genre</class>
+		<class>com.company.model.entities.Artist</class>
 	</persistence-unit>
 </persistence>

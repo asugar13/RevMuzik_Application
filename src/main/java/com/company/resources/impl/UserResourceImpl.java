@@ -58,7 +58,7 @@ public class UserResourceImpl implements UserResource {
 	public ResponseEntity<User> get(@ApiParam(value = "User Id", required = true) @PathVariable("id") Long id) {
 		
 		User user = service.get(id);
-	    List<Genre> genre = repository.findListGenreById(user.getId());
+	    List<Genre> genre = repository.findListGenreById(user.getIduser());
 	    
 	    if (user !=null && genre !=null)
 		    user.setGenre(genre);

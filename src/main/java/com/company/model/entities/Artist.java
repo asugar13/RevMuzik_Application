@@ -34,14 +34,6 @@ public class Artist implements Serializable{
 	@Column(name="artist_url")
 	private String artistUrl;
 
-
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "artist_user", 
-		joinColumns = {
-			@JoinColumn(name = "idartist", nullable = false, updatable = false) },
-		inverseJoinColumns = { 
-				@JoinColumn(name = "iduser", nullable = false, updatable = false) })	
-	private Set<User> user;	
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "artist_song", 
@@ -49,9 +41,15 @@ public class Artist implements Serializable{
 			@JoinColumn(name = "idartist", nullable = false, updatable = false) },
 		inverseJoinColumns = { 
 				@JoinColumn(name = "idsong", nullable = false, updatable = false) })	
-	private Set<Song> song;	
+	private List<Song> song;	
 	
-	@JsonIgnore
+	//@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "iduser", nullable = false)	
+	private User user;
+	
+	
+	//@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idsocial_media", nullable = false)	
 	private SocialMedia socialMedia;
@@ -76,20 +74,19 @@ public class Artist implements Serializable{
 		this.artistUrl = artistUrl;
 	}
 
-
-	public Set<User> getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(Set<User> user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 
-	public Set<Song> getSong() {
+	public List<Song> getSong() {
 		return song;
 	}
 
-	public void setSong(Set<Song> song) {
+	public void setSong(List<Song> song) {
 		this.song = song;
 	}
 

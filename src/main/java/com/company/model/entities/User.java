@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -65,11 +66,6 @@ public class User implements Serializable{
 	@JoinColumn(name = "idtype_user", nullable = false)
 	private TypeUser typeuser;
 
-	
-	/*@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private List<Venue> venue;*/
-
 	@ManyToMany
 	@JoinTable(name = "user_genre", 
 				joinColumns = {@JoinColumn(name = "iduser", referencedColumnName="iduser") },
@@ -77,15 +73,6 @@ public class User implements Serializable{
 	private List<Genre> genre;	
 
 	//add /bi-directional many-to-many association to SocialMedi Genre Media
-	
-	public Long getId() {
-		return iduser;
-	}
-
-	public void setId(Long id) {
-		this.iduser = id;
-	}
-
 	public Long getIduser() {
 		return iduser;
 	}
@@ -126,15 +113,6 @@ public class User implements Serializable{
 		this.userPassword = userPassword;
 	}
 
-
-	/*public List<Venue> getVenue() {
-		return venue;
-	}
-
-	public void setVenue(List<Venue> venue) {
-		this.venue = venue;
-	}
-*/
 	public boolean isEnable() {
 		return enable;
 	}
@@ -176,6 +154,5 @@ public class User implements Serializable{
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	
 	
 }
