@@ -21,11 +21,11 @@
 
 		.type {
 			img{
-				width: 13%;
+				width: 40px;
 			    height: 40px;
-			    left: 287px;
+			    left: 180px;
 			    position: relative;
-			    top: -221px;
+			    top: -10px;
 			}
 		}
 	}
@@ -55,5 +55,29 @@
 
 	.similar{
 		padding: 10px;
+	}
+}
+
+@media screen and (max-width: 320px){
+	.artist_name_and_icon{
+		img{
+			left: 130px !important;
+		}
+	}
+}
+
+@media screen and (min-width: 375px) and (max-width: 425px){
+	.artist_name_and_icon{
+		img{
+			left: 176px !important;
+		}
+	}
+}
+
+@media screen and (max-width: 425px){
+	.artist_name_and_icon{
+		img{
+			left: 214px !important;
+		}
 	}
 }

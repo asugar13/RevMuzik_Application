@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SearchResult } from '../classes/search-result';
 import { SEARCHRESULT } from '../mock-data/mock-search-results';
 
+import { GigsService } from '../services/gigs.service';
+
 @Component({
   selector: 'app-results-page',
   templateUrl: './results-page.component.html',
@@ -15,6 +17,8 @@ export class ResultsPageComponent implements OnInit {
 
   constructor() { 
   	this.searchEvents();
+
+    //call service but data in db isn't enough for testing so put off on that
   }
 
   ngOnInit() {
