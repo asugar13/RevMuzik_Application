@@ -17,5 +17,7 @@ public interface ShowResource {
 	ResponseEntity<Show> delete(Long id);
 	
 	ResponseEntity<List<Show>> showsByCity(String cc_fips);
+	
+	ResponseEntity<List<Show>> showsByArtist(String idartist);
 
 }

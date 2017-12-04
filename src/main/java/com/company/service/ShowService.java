@@ -24,5 +24,7 @@ public interface ShowService {
 	Page<Show> findAllByPage(int page, Sort.Direction direction);
 
 	List<Show> showsByVenues(List<Long> cc_fips);	
+	
+	List<Show> showsByArtist(Long idartist);	
 
 }

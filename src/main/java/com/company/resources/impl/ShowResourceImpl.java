@@ -67,21 +67,6 @@ public class ShowResourceImpl implements ShowResource{
 		return new ResponseEntity<Show>(show, HttpStatus.OK);
 	}
 
-	@ApiOperation(value = "Get a shows by locationid", tags = { "showsByCity" }, code = 200)
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Retrieve a show searched by locationid", response = Show.class),
-			@ApiResponse(code = 204, message = "No content retrieve searched by locationid", response = Void.class) })
-	@Override
-	@RequestMapping(value = "/city/{cc_fips}", method = RequestMethod.GET)
-	public ResponseEntity<List<Show>> showsByCity(@ApiParam(value = "City Id", required = true) @PathVariable("cc_fips") String cc_fips) {	
-		List<Long> venuesId = serviceVenue.venuesByCity(String.valueOf(cc_fips));//idcidade
-		List<Show> shows = service.showsByVenues(venuesId);//idcidade
-		if (null == shows)
-			return new ResponseEntity<List<Show>>(HttpStatus.NO_CONTENT);
-
-		return new ResponseEntity<List<Show>>(shows, HttpStatus.OK);
-	}
-	
 	@ApiOperation(value = "Create a show resource", tags = { "show" }, code = 200)
 	@ApiResponses(value = {
 			@ApiResponse(code = 201, message = "Retrieve a created show resource", response = Show.class),
@@ -132,6 +117,37 @@ public class ShowResourceImpl implements ShowResource{
 
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}	
+	
+	@ApiOperation(value = "Get a shows by locationid", tags = { "showsByCity" }, code = 200)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Retrieve a show searched by locationid", response = Show.class),
+			@ApiResponse(code = 204, message = "No content retrieve searched by locationid", response = Void.class) })
+	@Override
+	@RequestMapping(value = "/city/{cc_fips}", method = RequestMethod.GET)
+	public ResponseEntity<List<Show>> showsByCity(@ApiParam(value = "City Id", required = true) @PathVariable("cc_fips") String cc_fips) {	
+		List<Long> venuesId = serviceVenue.venuesByCity(String.valueOf(cc_fips));//idcidade
+		List<Show> shows = service.showsByVenues(venuesId);//idcidade
+		if (null == shows)
+			return new ResponseEntity<List<Show>>(HttpStatus.NO_CONTENT);
+
+		return new ResponseEntity<List<Show>>(shows, HttpStatus.OK);
+	}
+	
+	
+	@ApiOperation(value = "Get a shows by artist", tags = { "showsByArtist" }, code = 200)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Retrieve a show searched by artist", response = Show.class),
+			@ApiResponse(code = 204, message = "No content retrieve searched by artist", response = Void.class) })
+	@Override
+	@RequestMapping(value = "/artist/{idartist}", method = RequestMethod.GET)
+	public ResponseEntity<List<Show>> showsByArtist(@ApiParam(value = "Artist Id", required = true) @PathVariable("idartist") String idartist) {	
+		List<Show> shows = service.showsByArtist(new Long(idartist));
+		if (null == shows)
+			return new ResponseEntity<List<Show>>(HttpStatus.NO_CONTENT);
+
+		return new ResponseEntity<List<Show>>(shows, HttpStatus.OK);
+	}
+	
 
 
 }

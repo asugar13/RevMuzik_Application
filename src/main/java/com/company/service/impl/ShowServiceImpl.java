@@ -72,6 +72,11 @@ public class ShowServiceImpl implements ShowService {
 	public List<Show> showsByVenues(List<Long> idsVenues) {
 		return repository.findShowsbyVenues(idsVenues);
 	}
+	
+	@Override
+	public List<Show> showsByArtist(Long idArtist) {
+		return repository.findShowsbyArtist(idArtist);
+	}
 
 	@Override
 	public Show getShowByLocationGenreArtistVenue(Long id) {
