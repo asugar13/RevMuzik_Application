@@ -1,13 +1,15 @@
 <div class="artist-result">
 	<div class="artist-info">
-		<span class="artist-name" (click)="viewProfile(res)">{{res.artist.name}}</span>
+		<div class="artist_name_and_icon">
+			<span class="artist-name" (click)="viewProfile(res)">{{res.artist.name}}</span>
+			<!--
+				<span class="type">
+					<img src="assets/images/Artistgray.png">
+				</span>
+			-->
+		</div>	
+		
 		<img class="artist-image" [src]="res.artist.imageURL" />
-
-		<span class="type">
-			<!-- Use ngIf to verify proper image to render -->
-			<img src="assets/images/Artistpink.png" *ngIf="checkTime(res.date)">
-			<img src="assets/images/Artistgray.png" *ngIf="!checkTime(res.date)">
-		</span>
 	</div>
 	
 	<div class="event-info">
