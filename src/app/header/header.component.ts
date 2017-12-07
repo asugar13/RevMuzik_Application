@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { LoginComponent } from '../login/login.component';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
+
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
   	private auth: AuthService,
-  	private dialog: MdDialog) { 
+  	private dialog: MatDialog) { 
+
   		this.isSignedIn = false;
   }
 
