@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import 'hammerjs';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -13,7 +12,7 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 
 //md modules
-import { MdButtonModule, MdIconModule, MdDialogModule, MdInputModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatDialogModule, MatInputModule } from '@angular/material';
 
 //services
 import { AuthService } from './services/auth.service';
@@ -62,10 +61,10 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MdButtonModule,
-    MdIconModule,
-    MdDialogModule,
-    MdInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDialogModule,
+    MatInputModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase)
   ],

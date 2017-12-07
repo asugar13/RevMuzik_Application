@@ -30,12 +30,6 @@
 		<span class="results-title">Results for searching for {{searchQuery}}</span>
 			<br>
 
-			<audio controls>
-				<source src="https://www.computerhope.com/jargon/m/example.mp3" />
-			</audio>
-
-			<br>
-
 			<div class="results-list" *ngIf="view == 'artist'">
 				<artist-search-result class="result" [res]="result" *ngFor="let result of searchResults">
 				</artist-search-result>
