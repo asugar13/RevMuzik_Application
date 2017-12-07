@@ -5,7 +5,11 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.Type;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigInteger;
+import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -21,21 +25,21 @@ public class Venue implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long idvenue;
-
+	
+	@Column(name="capacity")
 	private int capacity;
 
+	@Column(name="description")
 	private String description;
 
+	@Column(name="email")
 	private String email;
 
+	@Column(name="equipments")
 	private String equipments;
 
+	@Column(name="hours")
 	private String hours;
-
-	@Column(name="idtype_user")
-	private Long idtypeUser;
-
-	private Long iduser;
 
 	@Column(name="phone_number")
 	private String phoneNumber;
@@ -50,7 +54,28 @@ public class Venue implements Serializable {
 	@Type(type="yes_no")
 	public boolean enable;
 
+	@Column(name="url")
 	private String url;
+	
+	@Column(name="location")
+	private String location;
+	
+	@Column(name="cc_fips")
+	private String cc_fips;
+	
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+	@JoinTable(name = "venue_user", 
+		joinColumns = {
+			@JoinColumn(name = "idvenue", nullable = false, updatable = false) },
+		inverseJoinColumns = { 
+				@JoinColumn(name = "iduser", nullable = false, updatable = false) })	
+	private List<User> user;
+	
+	//@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idsocial_media", nullable = false)	
+	private SocialMedia socialMedia;
 
 	public Venue() {
 	}
@@ -103,21 +128,6 @@ public class Venue implements Serializable {
 		this.hours = hours;
 	}
 
-	public Long getIdtypeUser() {
-		return this.idtypeUser;
-	}
-
-	public void setIdtypeUser(Long idtypeUser) {
-		this.idtypeUser = idtypeUser;
-	}
-
-	public Long getIduser() {
-		return this.iduser;
-	}
-
-	public void setIduser(Long iduser) {
-		this.iduser = iduser;
-	}
 
 	public String getPhoneNumber() {
 		return this.phoneNumber;
@@ -151,12 +161,52 @@ public class Venue implements Serializable {
 		this.url = url;
 	}
 	
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
 	public boolean isEnable() {
 		return enable;
 	}
 
 	public void setEnable(boolean enable) {
 		this.enable = enable;
+	}
+
+	public Long getIdStyle() {
+		return idStyle;
+	}
+
+	public void setIdStyle(Long idStyle) {
+		this.idStyle = idStyle;
+	}
+
+	public List<User> getUser() {
+		return user;
+	}
+
+	public void setUser(List<User> user) {
+		this.user = user;
+	}
+
+	public SocialMedia getSocialMedia() {
+		return socialMedia;
+	}
+
+	public void setSocialMedia(SocialMedia socialMedia) {
+		this.socialMedia = socialMedia;
+	}
+
+	public String getCc_fips() {
+		return cc_fips;
+	}
+
+	public void setCc_fips(String cc_fips) {
+		this.cc_fips = cc_fips;
 	}
 
 

@@ -1,6 +1,7 @@
 package com.company.model.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -19,11 +20,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.WhereJoinTable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import com.company.model.entities.Profile;
-import com.company.model.entities.Show;
 
 @Entity
 @Table(name = "user")
@@ -36,80 +35,82 @@ public class User implements Serializable{
 	private Long iduser;
 	
 	@NotNull
-	private String user_email;
+	@Column(name="user_email")
+	private String userEmail;
 
-	private String user_first_name;
+	@Column(name="user_first_name")
+	private String userFirstName;
 
-	private String user_last_name;
+	@Column(name="user_last_name")
+	private String userLastName;
 
 	@NotNull
-	private String user_name;
+	@Column(name="user_name")
+	private String userName;
 
 	@NotNull
-	private String user_password;
+	@Column(name="user_password")
+	private String userPassword;
 	
 	@Column(name = "enable", columnDefinition = "BIT", length = 1)
 	@Type(type="yes_no")
 	public boolean enable;
 	
-
-	@JsonIgnore
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "idprofile", nullable = false)	
+	//@JsonIgnore
+	@OneToOne
+	@JoinColumn(name = "idprofile", nullable = false)
 	private Profile profile;
 	
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
-	private Set<Show> shows;
-	
+	//@JsonIgnore
+	@OneToOne
+	@JoinColumn(name = "idtype_user", nullable = false)
+	private TypeUser typeuser;
+
+	@ManyToMany
+	@JoinTable(name = "user_genre", 
+				joinColumns = {@JoinColumn(name = "iduser", referencedColumnName="iduser") },
+				inverseJoinColumns = {@JoinColumn(name = "idgenre", referencedColumnName="idgenre") })	
+	private List<Genre> genre;	
+
 	//add /bi-directional many-to-many association to SocialMedi Genre Media
-	
-	public Long getId() {
+	public Long getIduser() {
 		return iduser;
 	}
 
-	public void setId(Long id) {
-		this.iduser = id;
-	}
-
-	public String getUserEmail() {
-		return user_email;
-	}
-
-	public void setUserEmail(String userEmail) {
-		this.user_email = userEmail;
+	public void setIduser(Long iduser) {
+		this.iduser = iduser;
 	}
 
 	public String getUserFirstName() {
-		return user_first_name;
+		return userFirstName;
 	}
 
 	public void setUserFirstName(String userFirstName) {
-		this.user_first_name = userFirstName;
+		this.userFirstName = userFirstName;
 	}
 
 	public String getUserLastName() {
-		return user_last_name;
+		return userLastName;
 	}
 
 	public void setUserLastName(String userLastName) {
-		this.user_last_name = userLastName;
+		this.userLastName = userLastName;
 	}
 
 	public String getUserName() {
-		return user_name;
+		return userName;
 	}
 
 	public void setUserName(String userName) {
-		this.user_name = userName;
+		this.userName = userName;
 	}
 
 	public String getUserPassword() {
-		return user_password;
+		return userPassword;
 	}
 
 	public void setUserPassword(String userPassword) {
-		this.user_password = userPassword;
+		this.userPassword = userPassword;
 	}
 
 	public boolean isEnable() {
@@ -129,12 +130,29 @@ public class User implements Serializable{
 		this.profile = profile;
 	}
 
-	public Set<Show> getShows() {
-		return shows;
+	public TypeUser getTypeuser() {
+		return typeuser;
 	}
 
-	public void setShows(Set<Show> shows) {
-		this.shows = shows;
+	public void setTypeuser(TypeUser typeuser) {
+		this.typeuser = typeuser;
 	}
 
+
+	public List<Genre> getGenre() {
+		return genre;
+	}
+
+	public void setGenre(List<Genre> genre) {
+		this.genre = genre;
+	}
+
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+	
 }

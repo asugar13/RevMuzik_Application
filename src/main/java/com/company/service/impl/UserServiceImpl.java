@@ -3,9 +3,6 @@ package com.company.service.impl;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort.Direction;
@@ -17,8 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.company.model.entities.User;
 import com.company.repository.UserRepository;
 import com.company.service.UserService;
-
-import com.company.model.entities.Show;
+import com.company.model.entities.Artist;
 
 
 @Service
@@ -26,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository repository;
-	
+
 	@Override
 	public User login(String email, String password) {
 		return null;
@@ -38,9 +34,10 @@ public class UserServiceImpl implements UserService {
 		String email = (String)authentication.getPrincipal(); 
 		User user = repository.findByEmail( email );
 		if ( user != null ) {
-			Iterator<Show> showIterator = user.getShows().iterator();
+			//Iterator<Artist> showIterator = user.getArtist().iterator();
+			Iterator<Artist> showIterator  = null;
 			while ( showIterator.hasNext() ) {
-				if ( showIterator.next().getId().equals( showId ) ) {
+				if ( showIterator.next().getIdartist().equals( showId ) ) {
 					return true;
 				}
 			}
@@ -55,30 +52,28 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User get(Long id) {
-		return repository.findOne( id );
+	   User user = repository.findOne(id);
+	   return user;
 	}
 
 	@Transactional
 	@Override
 	public User insert(User user) {
-		return repository.save( user );
+		return repository.save(user);
 	}
 
 	@Transactional
 	@Override
 	public User update(User user) {
-		User persisted = repository.findOne( user.getId() );
+		User persisted = repository.findOne( user.getIduser() );
 
 		if (null == persisted)
 			return null;
 		
-		persisted.setUserEmail( user.getUserEmail());
 		persisted.setUserName( user.getUserName());
 		persisted.setUserFirstName( user.getUserFirstName());
 		persisted.setUserLastName(user.getUserLastName());
 		persisted.setEnable( user.isEnable() );
-		persisted.setProfile( user.getProfile() );
-		persisted.setShows( user.getShows() );
 
 		return repository.save(persisted);
 	}
@@ -86,7 +81,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public User updatePassword(User user) {
-		User persisted = repository.findOne( user.getId() );
+		User persisted = repository.findOne( user.getIduser() );
 
 		if (null == persisted)
 			return null;

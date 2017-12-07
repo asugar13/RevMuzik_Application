@@ -30,29 +30,21 @@ public class VenueServiceImpl implements VenueService {
 
 	@Override
 	public Venue insert(Venue venue) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.save( venue );
 	}
 
 	@Override
 	public Venue update(Venue venue) {
-		
-		Venue persisted = repository.findOne( venue.getIdvenue() );
+		Venue persisted = repository.findOne(venue.getIdvenue());
 
 		if (null == persisted)
 			return null;
 		
-		persisted.setPictureUrl(venue.getPictureUrl());
-		persisted.setHours(venue.getHours());
-		persisted.setUrl(venue.getUrl());
+		persisted.setCapacity( venue.getCapacity());
+		persisted.setDescription( venue.getDescription());
 		persisted.setPhoneNumber(venue.getPhoneNumber());
-		persisted.setEmail(venue.getEmail());
-		persisted.setCapacity(venue.getCapacity());
-		persisted.setDescription(venue.getDescription());
-		persisted.setEquipments(venue.getEquipments());
-		persisted.setIduser(venue.getIduser());
-		persisted.setIdtypeUser(venue.getIdtypeUser());
-		persisted.setEnable(venue.isEnable());
+		persisted.setLocation(venue.getLocation());
+		persisted.setCc_fips( venue.getCc_fips() );
 
 		return repository.save(persisted);
 	}
@@ -74,5 +66,10 @@ public class VenueServiceImpl implements VenueService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	@Override
+	public List<Long> venuesByCity(String idCity) {
+		return repository.findVenuesIdByCity(idCity);
+	}
+	
 }

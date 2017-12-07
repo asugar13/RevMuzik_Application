@@ -25,7 +25,7 @@ public class Profile implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer idprofile;
+	private Long idprofile;
 	
 	@NotNull
 	private String name;
@@ -38,12 +38,12 @@ public class Profile implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "profile")
 	private List<Authority> authorities;
 
-	public Integer getId() {
+	public Long getIdprofile() {
 		return idprofile;
 	}
 
-	public void setId(Integer id) {
-		this.idprofile = id;
+	public void setIdprofile(Long idprofile) {
+		this.idprofile = idprofile;
 	}
 
 	public String getName() {

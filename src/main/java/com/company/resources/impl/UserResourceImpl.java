@@ -1,7 +1,6 @@
 package com.company.resources.impl;
 
 import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.company.model.entities.User;
+import com.company.model.entities.Genre;
+import com.company.repository.GenreRepository;
 import com.company.resources.UserResource;
 import com.company.service.UserService;
 import io.swagger.annotations.Api;
@@ -29,6 +30,8 @@ public class UserResourceImpl implements UserResource {
 	
 	@Autowired
 	private UserService service;
+	@Autowired
+	private GenreRepository repository;
 	
 	@ApiOperation(value = "Retrieves a list of users", tags = { "user" }, code = 200)
 	@ApiResponses(value = {
@@ -55,7 +58,10 @@ public class UserResourceImpl implements UserResource {
 	public ResponseEntity<User> get(@ApiParam(value = "User Id", required = true) @PathVariable("id") Long id) {
 		
 		User user = service.get(id);
-
+	    List<Genre> genre = repository.findListGenreById(user.getIduser());
+	    
+	    if (user !=null && genre !=null)
+		    user.setGenre(genre);
 		if (null == user)
 			return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
 
@@ -69,7 +75,8 @@ public class UserResourceImpl implements UserResource {
 			@ApiResponse(code = 304, message = "Not modified retrieve if no user was created", response = Void.class) })
 	@Override
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ResponseEntity<User> create(@ApiParam(value = "User json stream resource", required = true) @Valid @RequestBody User user) {
+	public ResponseEntity<User> create(@ApiParam(value = "User json stream resource", required = true, name = "user") @Valid @RequestBody User user) {
+		
 		User created = service.insert(user);
 
 		if (null == created)
@@ -118,8 +125,9 @@ public class UserResourceImpl implements UserResource {
 			@ApiResponse(code = 204, message = "No content retrieve, deleted user resource", response = User.class),
 			@ApiResponse(code = 404, message = "Not found retrieve if no delete was process", response = Void.class) })
 	@Override
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<User> delete(@ApiParam(value = "User Id", required = true) @PathVariable("id") Long id) {
+		
 		User persisted = service.delete(id);
 
 		if (null == persisted)

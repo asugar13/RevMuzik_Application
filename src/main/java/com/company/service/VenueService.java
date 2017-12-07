@@ -16,10 +16,11 @@ public interface VenueService {
 	Venue insert(Venue venue);
 
 	Venue update(Venue venue);
-	
+
 	Venue delete(Long id);
 
 	Page<Venue> findAllByPage(int page, Sort.Direction direction);	
-
+	
+	List<Long> venuesByCity(String idCity);
 
 }

@@ -15,7 +15,7 @@ public interface VenueResource {
 	ResponseEntity<Venue> create(Venue venue);
 
 	ResponseEntity<Venue> update(Venue venue);
-	
+
 	ResponseEntity<Venue> delete(Long id);
 	
 

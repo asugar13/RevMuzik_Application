@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+<<<<<<< HEAD
+=======
+import 'hammerjs';
+>>>>>>> 05fd8ace934fb012d9bb4617fcade2b5044beb5f
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -12,7 +16,11 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 
 //md modules
+<<<<<<< HEAD
 import { MatButtonModule, MatIconModule, MatDialogModule, MatInputModule } from '@angular/material';
+=======
+import { MdButtonModule, MdIconModule, MdDialogModule, MdInputModule } from '@angular/material';
+>>>>>>> 05fd8ace934fb012d9bb4617fcade2b5044beb5f
 
 //services
 import { AuthService } from './services/auth.service';
@@ -61,10 +69,17 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+<<<<<<< HEAD
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
     MatInputModule,
+=======
+    MdButtonModule,
+    MdIconModule,
+    MdDialogModule,
+    MdInputModule,
+>>>>>>> 05fd8ace934fb012d9bb4617fcade2b5044beb5f
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase)
   ],

@@ -2,9 +2,13 @@ package com.company.resources.impl;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +19,7 @@ import com.company.service.VenueService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -48,8 +53,8 @@ public class VenueResourceImpl implements VenueResource {
 			@ApiResponse(code = 204, message = "No content retrieve searched by id", response = Void.class) })
 	@Override
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Venue> get(Long id) {
-		Venue venue = service.get(id);
+	public ResponseEntity<Venue> get(@ApiParam(value = "Veuen Id", required = true) @PathVariable("id") Long id) {
+		 Venue venue = service.get(id);
 
 		if (null == venue)
 			return new ResponseEntity<Venue>(HttpStatus.NO_CONTENT);
@@ -57,15 +62,15 @@ public class VenueResourceImpl implements VenueResource {
 		return new ResponseEntity<Venue>(venue, HttpStatus.OK);
 	}
 
-	
-	@ApiOperation(value = "Update a venue resource", tags = { "venue" }, code = 200)
+	@ApiOperation(value = "Update a venues resource", tags = { "venue" }, code = 200)
 	@ApiResponses(value = {
 			@ApiResponse(code = 201, message = "Retrieve a created venue resource", response = Venue.class),
 			@ApiResponse(code = 400, message = "Bad Request", response = Void.class),
 			@ApiResponse(code = 304, message = "Not modified retrieve if no venue was created", response = Void.class) })
 	@Override
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ResponseEntity<Venue> create(Venue venue) {
+	public ResponseEntity<Venue> create(@ApiParam(value = "Venue json stream resource", required = true, name = "venue") @Valid @RequestBody Venue venue) {
+		
 		Venue created = service.insert(venue);
 
 		if (null == created)
@@ -82,7 +87,8 @@ public class VenueResourceImpl implements VenueResource {
 			@ApiResponse(code = 404, message = "Not found retrieve if no update was process", response = Void.class) })
 	@Override
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
-	public ResponseEntity<Venue> update(Venue venue) {
+	public ResponseEntity<Venue> update(@ApiParam(value = "Venue json stream resource", required = true) @RequestBody Venue venue) {
+		
 		Venue persisted = service.update(venue);
 
 		if (null == persisted)
@@ -97,14 +103,14 @@ public class VenueResourceImpl implements VenueResource {
 			@ApiResponse(code = 204, message = "No content retrieve, deleted venue resource", response = Venue.class),
 			@ApiResponse(code = 404, message = "Not found retrieve if no delete was process", response = Void.class) })
 	@Override
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Venue> delete(Long id) {
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Venue> delete(@ApiParam(value = "Venue Id", required = true) @PathVariable("id") Long id) {
+		
 		Venue persisted = service.delete(id);
 
 		if (null == persisted)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	}
-
+	}	
 }
