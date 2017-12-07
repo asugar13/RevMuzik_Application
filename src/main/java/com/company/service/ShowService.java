@@ -26,5 +26,7 @@ public interface ShowService {
 	List<Show> showsByVenues(List<Long> cc_fips);	
 	
 	List<Show> showsByArtist(Long idartist);	
+	
+	List<Show> showsGenricSearch(String generic);	
 
 }

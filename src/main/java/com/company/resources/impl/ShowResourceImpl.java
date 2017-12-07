@@ -148,6 +148,18 @@ public class ShowResourceImpl implements ShowResource{
 		return new ResponseEntity<List<Show>>(shows, HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "Get a shows generic search", tags = { "searchGeneric" }, code = 200)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Retrieve a show searched by generic", response = Show.class),
+			@ApiResponse(code = 204, message = "No content retrieve searched by generic", response = Void.class) })
+	@Override
+	@RequestMapping(value = "/generic/{generic}", method = RequestMethod.GET)
+	public ResponseEntity<List<Show>> showsGenricSearch(@ApiParam(value = "Generic Search", required = true) @PathVariable("generic") String generic) {	
+		List<Show> shows = service.showsGenricSearch(generic);
+		if (null == shows)
+			return new ResponseEntity<List<Show>>(HttpStatus.NO_CONTENT);
 
+		return new ResponseEntity<List<Show>>(shows, HttpStatus.OK);
+	}
 
 }

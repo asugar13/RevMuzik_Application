@@ -79,6 +79,11 @@ public class ShowServiceImpl implements ShowService {
 	}
 
 	@Override
+	public List<Show> showsGenricSearch(String genericSearch) {
+		return repository.findShowsGenricSearch(genericSearch);
+	}
+	
+	@Override
 	public Show getShowByLocationGenreArtistVenue(Long id) {
 		// TODO Auto-generated method stub
 		return null;

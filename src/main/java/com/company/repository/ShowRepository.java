@@ -17,5 +17,8 @@ public interface ShowRepository extends JpaRepository<Show, Long>{
 	
 	@Query(value = "SELECT * FROM shows s WHERE s.idartist in(SELECT a.idartist FROM show_artist a WHERE a.idartist = :idartist)", nativeQuery = true)
 	List<Show> findShowsbyArtist(@Param("idartist") Long idartist);
+	
+	@Query(value = "SELECT * FROM shows s WHERE s.idartist in(SELECT a.idartist FROM show_artist a WHERE a.idartist = :idartist)", nativeQuery = true)
+	List<Show> findShowsGenricSearch(@Param("idartist") String idartist);
 
 }

@@ -19,5 +19,7 @@ public interface ShowResource {
 	ResponseEntity<List<Show>> showsByCity(String cc_fips);
 	
 	ResponseEntity<List<Show>> showsByArtist(String idartist);
+	
+	ResponseEntity<List<Show>> showsGenricSearch(String genericSearch);
 
 }
