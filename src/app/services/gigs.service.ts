@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { HttpClient, HttpHeaders } from '@angular/common/http';	
 
 @Injectable()
 export class GigsService {
 
 	gigs: any;
+	showsUrl = "http://localhost:8080/api/v1/show";
 
-  constructor(private db: AngularFireDatabase) { 
-  	this.getGigs();
+  constructor(
+  	private http: HttpClient) { 
+  		//this.getGigs();
   }
 
+
   getGigs(){
-  	this.gigs = this.db.list('gigs').snapshotChanges();
+  	return this.http.get(this.showsUrl);
   }
 
 

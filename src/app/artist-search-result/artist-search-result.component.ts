@@ -9,7 +9,7 @@ import { SearchResult } from '../classes/search-result';
 })
 export class ArtistSearchResultComponent implements OnInit {
   
-  @Input() res: SearchResult;
+  @Input() res: any;
   today: any;
 
   constructor(

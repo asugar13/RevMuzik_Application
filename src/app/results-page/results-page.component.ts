@@ -15,7 +15,8 @@ export class ResultsPageComponent implements OnInit {
   searchResults: any;
   view: string = 'artist';
 
-  constructor() { 
+  constructor(
+  	private gigsSvc: GigsService) { 
   	this.searchEvents();
 
     //call service but data in db isn't enough for testing so put off on that
@@ -34,6 +35,8 @@ export class ResultsPageComponent implements OnInit {
 
   //move this into service
   searchEvents(){
-  	this.searchResults = SEARCHRESULT;
+  	//this.searchResults = SEARCHRESULT;
+  	this.searchResults = this.gigsSvc.getGigs();
+  	console.log("Results from service: ", this.gigsSvc.gigs); 
   }
 }

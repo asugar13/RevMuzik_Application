@@ -1,0 +1,963 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "REST API Documentation for Revmuzik REST Library",
+    "version" : "version 1.0",
+    "title" : "REST API Documentation for Revmuzik",
+    "termsOfService" : "http://www.bilheteriarapida.com.br/terms",
+    "contact" : {
+      "name" : "eliane",
+      "url" : "site",
+      "email" : "email"
+    },
+    "license" : {
+      "name" : "Revmuzik License Terms",
+      "url" : "licence"
+    }
+  },
+  "host" : "localhost:8080",
+  "tags" : [ {
+    "name" : "genre"
+  }, {
+    "name" : "searchGeneric"
+  }, {
+    "name" : "show"
+  }, {
+    "name" : "showsByArtist"
+  }, {
+    "name" : "showsByCity"
+  }, {
+    "name" : "user"
+  }, {
+    "name" : "venue"
+  } ],
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/api/v1/genre" : {
+      "get" : {
+        "tags" : [ "genre" ],
+        "summary" : "Retrieves a list of genres",
+        "description" : "",
+        "operationId" : "list",
+        "responses" : {
+          "200" : {
+            "description" : "Retrieves a list of genres",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Genre"
+              }
+            }
+          },
+          "204" : {
+            "description" : "No content retrieve"
+          }
+        }
+      }
+    },
+    "/api/v1/genre/create" : {
+      "post" : {
+        "tags" : [ "genre" ],
+        "summary" : "Update a genre resource",
+        "description" : "",
+        "operationId" : "create",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "genre",
+          "description" : "Genre json stream resource",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Genre"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Genre"
+            }
+          },
+          "201" : {
+            "description" : "Retrieve a created genre resource",
+            "schema" : {
+              "$ref" : "#/definitions/Genre"
+            }
+          },
+          "304" : {
+            "description" : "Not modified retrieve if no genre was created"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/v1/genre/delete/{id}" : {
+      "delete" : {
+        "tags" : [ "genre" ],
+        "summary" : "Delete a genre resource",
+        "description" : "",
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Genre Id",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "No content retrieve, deleted genre resource",
+            "schema" : {
+              "$ref" : "#/definitions/Genre"
+            }
+          },
+          "404" : {
+            "description" : "Not found retrieve if no delete was process"
+          }
+        }
+      }
+    },
+    "/api/v1/genre/update" : {
+      "put" : {
+        "tags" : [ "genre" ],
+        "summary" : "Update a genre resource",
+        "description" : "",
+        "operationId" : "update",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Genre json stream resource",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Genre"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieve an updated genre resource",
+            "schema" : {
+              "$ref" : "#/definitions/Genre"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "404" : {
+            "description" : "Not found retrieve if no update was process"
+          }
+        }
+      }
+    },
+    "/api/v1/genre/{id}" : {
+      "get" : {
+        "tags" : [ "genre" ],
+        "summary" : "Get a genre by id",
+        "description" : "",
+        "operationId" : "get",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Genre Id",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieve a genre searched by id",
+            "schema" : {
+              "$ref" : "#/definitions/Genre"
+            }
+          },
+          "204" : {
+            "description" : "No content retrieve searched by id"
+          }
+        }
+      }
+    },
+    "/api/v1/show" : {
+      "get" : {
+        "tags" : [ "show" ],
+        "summary" : "Retrieves entire list of shows",
+        "description" : "",
+        "operationId" : "list",
+        "responses" : {
+          "200" : {
+            "description" : "Retrieves a list of gigs",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Show"
+              }
+            }
+          },
+          "204" : {
+            "description" : "No content retrieve"
+          }
+        }
+      }
+    },
+    "/api/v1/show/artist/{idartist}" : {
+      "get" : {
+        "tags" : [ "showsByArtist" ],
+        "summary" : "Get a shows by artist",
+        "description" : "",
+        "operationId" : "showsByArtist",
+        "parameters" : [ {
+          "name" : "idartist",
+          "in" : "path",
+          "description" : "Artist Id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieve a show searched by artist",
+            "schema" : {
+              "$ref" : "#/definitions/Show"
+            }
+          },
+          "204" : {
+            "description" : "No content retrieve searched by artist"
+          }
+        }
+      }
+    },
+    "/api/v1/show/city/{cc_fips}" : {
+      "get" : {
+        "tags" : [ "showsByCity" ],
+        "summary" : "Get a shows by locationid",
+        "description" : "",
+        "operationId" : "showsByCity",
+        "parameters" : [ {
+          "name" : "cc_fips",
+          "in" : "path",
+          "description" : "City Id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieve a show searched by locationid",
+            "schema" : {
+              "$ref" : "#/definitions/Show"
+            }
+          },
+          "204" : {
+            "description" : "No content retrieve searched by locationid"
+          }
+        }
+      }
+    },
+    "/api/v1/show/create" : {
+      "post" : {
+        "tags" : [ "show" ],
+        "summary" : "Create a show resource",
+        "description" : "",
+        "operationId" : "create",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Show json stream resource",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Show"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Show"
+            }
+          },
+          "201" : {
+            "description" : "Retrieve a created show resource",
+            "schema" : {
+              "$ref" : "#/definitions/Show"
+            }
+          },
+          "304" : {
+            "description" : "Not modified retrieve if no show was created"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/v1/show/delete/{id}" : {
+      "delete" : {
+        "tags" : [ "show" ],
+        "summary" : "Delete a show resource",
+        "description" : "",
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Show Id",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "No content retrieve, deleted show resource",
+            "schema" : {
+              "$ref" : "#/definitions/Show"
+            }
+          },
+          "404" : {
+            "description" : "Not found retrieve if no delete was process"
+          }
+        }
+      }
+    },
+    "/api/v1/show/generic/{generic}" : {
+      "get" : {
+        "tags" : [ "searchGeneric" ],
+        "summary" : "Get a shows generic search",
+        "description" : "",
+        "operationId" : "showsGenricSearch",
+        "parameters" : [ {
+          "name" : "generic",
+          "in" : "path",
+          "description" : "Generic Search",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieve a show searched by generic",
+            "schema" : {
+              "$ref" : "#/definitions/Show"
+            }
+          },
+          "204" : {
+            "description" : "No content retrieve searched by generic"
+          }
+        }
+      }
+    },
+    "/api/v1/show/update" : {
+      "put" : {
+        "tags" : [ "show" ],
+        "summary" : "Update a show resource",
+        "description" : "",
+        "operationId" : "update",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Show json stream resource",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Show"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieve an updated show resource",
+            "schema" : {
+              "$ref" : "#/definitions/Show"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "404" : {
+            "description" : "Not found retrieve if no update was process"
+          }
+        }
+      }
+    },
+    "/api/v1/show/{id}" : {
+      "get" : {
+        "tags" : [ "show" ],
+        "summary" : "Get a shows by id",
+        "description" : "",
+        "operationId" : "get",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Show Id",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieve a show searched by id",
+            "schema" : {
+              "$ref" : "#/definitions/Show"
+            }
+          },
+          "204" : {
+            "description" : "No content retrieve searched by id"
+          }
+        }
+      }
+    },
+    "/api/v1/user" : {
+      "get" : {
+        "tags" : [ "user" ],
+        "summary" : "Retrieves a list of users",
+        "description" : "",
+        "operationId" : "list",
+        "responses" : {
+          "200" : {
+            "description" : "Retrieves a list of users",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/User"
+              }
+            }
+          },
+          "204" : {
+            "description" : "No content retrieve"
+          }
+        }
+      }
+    },
+    "/api/v1/user/create" : {
+      "post" : {
+        "tags" : [ "user" ],
+        "summary" : "Update a user resource",
+        "description" : "",
+        "operationId" : "create",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "user",
+          "description" : "User json stream resource",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/User"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          },
+          "201" : {
+            "description" : "Retrieve a created user resource",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          },
+          "304" : {
+            "description" : "Not modified retrieve if no user was created"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/v1/user/delete/{id}" : {
+      "delete" : {
+        "tags" : [ "user" ],
+        "summary" : "Delete a user resource",
+        "description" : "",
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "User Id",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "No content retrieve, deleted user resource",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          },
+          "404" : {
+            "description" : "Not found retrieve if no delete was process"
+          }
+        }
+      }
+    },
+    "/api/v1/user/update" : {
+      "put" : {
+        "tags" : [ "user" ],
+        "summary" : "Update a user resource",
+        "description" : "",
+        "operationId" : "update",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "User json stream resource",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/User"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieve an updated user resource",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "404" : {
+            "description" : "Not found retrieve if no update was process"
+          }
+        }
+      }
+    },
+    "/api/v1/user/updatePassword" : {
+      "put" : {
+        "tags" : [ "user" ],
+        "summary" : "Update a password of user resource",
+        "description" : "",
+        "operationId" : "updatePassword",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "User json stream resource",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/User"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieve an updated user resource",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "404" : {
+            "description" : "Not found retrieve if no update was process"
+          }
+        }
+      }
+    },
+    "/api/v1/user/{id}" : {
+      "get" : {
+        "tags" : [ "user" ],
+        "summary" : "Get a user by id",
+        "description" : "",
+        "operationId" : "get",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "User Id",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieve a user searched by id",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          },
+          "204" : {
+            "description" : "No content retrieve searched by id"
+          }
+        }
+      }
+    },
+    "/api/v1/venue" : {
+      "get" : {
+        "tags" : [ "venue" ],
+        "summary" : "Retrieves a list of venues",
+        "description" : "",
+        "operationId" : "list",
+        "responses" : {
+          "200" : {
+            "description" : "Retrieves a list of venues",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Venue"
+              }
+            }
+          },
+          "204" : {
+            "description" : "No content retrieve"
+          }
+        }
+      }
+    },
+    "/api/v1/venue/create" : {
+      "post" : {
+        "tags" : [ "venue" ],
+        "summary" : "Update a venues resource",
+        "description" : "",
+        "operationId" : "create",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "venue",
+          "description" : "Venue json stream resource",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Venue"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Venue"
+            }
+          },
+          "201" : {
+            "description" : "Retrieve a created venue resource",
+            "schema" : {
+              "$ref" : "#/definitions/Venue"
+            }
+          },
+          "304" : {
+            "description" : "Not modified retrieve if no venue was created"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/v1/venue/delete/{id}" : {
+      "delete" : {
+        "tags" : [ "venue" ],
+        "summary" : "Delete a venue resource",
+        "description" : "",
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Venue Id",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "No content retrieve, deleted venue resource",
+            "schema" : {
+              "$ref" : "#/definitions/Venue"
+            }
+          },
+          "404" : {
+            "description" : "Not found retrieve if no delete was process"
+          }
+        }
+      }
+    },
+    "/api/v1/venue/update" : {
+      "put" : {
+        "tags" : [ "venue" ],
+        "summary" : "Update a venue resource",
+        "description" : "",
+        "operationId" : "update",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Venue json stream resource",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Venue"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieve an updated venue resource",
+            "schema" : {
+              "$ref" : "#/definitions/Venue"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "404" : {
+            "description" : "Not found retrieve if no update was process"
+          }
+        }
+      }
+    },
+    "/api/v1/venue/{id}" : {
+      "get" : {
+        "tags" : [ "venue" ],
+        "summary" : "Get a venue by id",
+        "description" : "",
+        "operationId" : "get",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Veuen Id",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieve a venue searched by id",
+            "schema" : {
+              "$ref" : "#/definitions/Venue"
+            }
+          },
+          "204" : {
+            "description" : "No content retrieve searched by id"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Artist" : {
+      "type" : "object",
+      "properties" : {
+        "idartist" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "artistUrl" : {
+          "type" : "string"
+        },
+        "song" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Song"
+          }
+        },
+        "user" : {
+          "$ref" : "#/definitions/User"
+        },
+        "socialMedia" : {
+          "$ref" : "#/definitions/SocialMedia"
+        }
+      }
+    },
+    "Genre" : {
+      "type" : "object",
+      "properties" : {
+        "idgenre" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Profile" : {
+      "type" : "object",
+      "required" : [ "name" ],
+      "properties" : {
+        "idprofile" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "enable" : {
+          "type" : "boolean",
+          "default" : false
+        }
+      }
+    },
+    "Show" : {
+      "type" : "object",
+      "properties" : {
+        "idshow" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "endDateTime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "startDateTime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "artist" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Artist"
+          }
+        },
+        "venue" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Venue"
+          }
+        }
+      }
+    },
+    "SocialMedia" : {
+      "type" : "object",
+      "properties" : {
+        "nameSocialMedia" : {
+          "type" : "string"
+        },
+        "urlSocialMedia" : {
+          "type" : "string"
+        },
+        "idsocialMedia" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    },
+    "Song" : {
+      "type" : "object",
+      "properties" : {
+        "idsong" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "namesong" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "artistOrigin" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TypeUser" : {
+      "type" : "object",
+      "required" : [ "description" ],
+      "properties" : {
+        "idtypeUser" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "description" : {
+          "type" : "string"
+        }
+      }
+    },
+    "User" : {
+      "type" : "object",
+      "required" : [ "userEmail", "userName", "userPassword" ],
+      "properties" : {
+        "iduser" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "userEmail" : {
+          "type" : "string"
+        },
+        "userFirstName" : {
+          "type" : "string"
+        },
+        "userLastName" : {
+          "type" : "string"
+        },
+        "userName" : {
+          "type" : "string"
+        },
+        "userPassword" : {
+          "type" : "string"
+        },
+        "enable" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "profile" : {
+          "$ref" : "#/definitions/Profile"
+        },
+        "typeuser" : {
+          "$ref" : "#/definitions/TypeUser"
+        },
+        "genre" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Genre"
+          }
+        }
+      }
+    },
+    "Venue" : {
+      "type" : "object",
+      "properties" : {
+        "idvenue" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "capacity" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "equipments" : {
+          "type" : "string"
+        },
+        "hours" : {
+          "type" : "string"
+        },
+        "phoneNumber" : {
+          "type" : "string"
+        },
+        "pictureUrl" : {
+          "type" : "string"
+        },
+        "idStyle" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "enable" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "location" : {
+          "type" : "string"
+        },
+        "cc_fips" : {
+          "type" : "string"
+        },
+        "user" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/User"
+          }
+        },
+        "socialMedia" : {
+          "$ref" : "#/definitions/SocialMedia"
+        },
+        "styleId" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    }
+  }
+}
