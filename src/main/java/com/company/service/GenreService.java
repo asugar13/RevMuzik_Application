@@ -2,10 +2,6 @@ package com.company.service;
 
 
 import java.util.List;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
-
 import com.company.model.entities.Genre;
 
 
@@ -19,9 +15,6 @@ public interface GenreService {
 
 	Genre update(Genre user);
 	
-	Genre delete(Long id);
-
-	Page<Genre> findAllByPage(int page, int limit, String order, Sort.Direction direction);
-		
+	Genre delete(Long id);	
 
 }

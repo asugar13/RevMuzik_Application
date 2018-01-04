@@ -12,6 +12,8 @@ import com.company.model.entities.Venue;
 import com.company.repository.VenueRepository;
 import com.company.service.VenueService;
 
+import scala.annotation.meta.setter;
+
 @Service
 public class VenueServiceImpl implements VenueService {
 
@@ -47,6 +49,7 @@ public class VenueServiceImpl implements VenueService {
 		persisted.setCc_fips( venue.getCc_fips() );
 		persisted.setPictureUrl(venue.getPictureUrl());
 		persisted.setEnable(venue.isEnable());
+		persisted.setPictureUrl(venue.getPictureUrl());
 
 		return repository.save(persisted);
 	}
@@ -62,16 +65,16 @@ public class VenueServiceImpl implements VenueService {
 		repository.delete( persisted );
 		return persisted;
 	}
-
-	@Override
-	public Page<Venue> findAllByPage(int page, Direction direction) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@Override
 	public List<Long> venuesByCity(String idCity) {
 		return repository.findVenuesIdByCity(idCity);
+	}
+	
+	@Override
+	public Page<Venue> findAllByPage(int page, Direction direction) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

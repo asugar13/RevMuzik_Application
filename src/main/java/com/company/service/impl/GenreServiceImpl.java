@@ -58,14 +58,6 @@ public class GenreServiceImpl implements GenreService {
 		
 		repository.delete( persisted );
 		return persisted;
-	}
-
-	@Override
-	public Page<Genre> findAllByPage(int page, int limit, String order, Direction direction) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
+	}	
 
 }

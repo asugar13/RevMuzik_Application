@@ -11,7 +11,7 @@ import com.company.model.entities.Artist;
 public interface ArtistRepository extends JpaRepository<Artist, Long>{
 	
 	@Query("SELECT v FROM Artist v WHERE v.idartist = :idartist AND v.enable = true")
-	Artist findByIdArtist(@Param("idvenue") Long idartist);
+	Artist findByIdArtist(@Param("idartist") Long idartist);
 	
 	@Query("SELECT v FROM Artist v WHERE v.enable = true")
 	List<Artist> findArtist();	

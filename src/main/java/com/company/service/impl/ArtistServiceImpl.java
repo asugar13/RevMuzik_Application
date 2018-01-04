@@ -3,12 +3,17 @@ package com.company.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.stereotype.Service;
 
 import com.company.model.entities.Artist;
+import com.company.model.entities.Genre;
 import com.company.model.entities.Venue;
 import com.company.repository.ArtistRepository;
 import com.company.service.ArtistService;
 
+@Service
 public class ArtistServiceImpl implements ArtistService{
 
 	@Autowired
@@ -41,6 +46,7 @@ public class ArtistServiceImpl implements ArtistService{
 		persisted.setSong(artist.getSong());
 		persisted.setUser(artist.getUser());
 		persisted.setEnable(artist.isEnable());
+		persisted.setPictureUrl(artist.getPictureUrl());
 		
 		return repository.save(persisted);
 	}
@@ -48,12 +54,17 @@ public class ArtistServiceImpl implements ArtistService{
 	@Override
 	public Artist delete(Long id) {
 		Artist persisted = repository.findOne( id );
-
 		if (null == persisted)
 			return null;
 		
 		repository.delete( persisted );
 		return persisted;
+	}
+	
+	@Override
+	public Page<Artist> findAllByPage(int page, Direction direction) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

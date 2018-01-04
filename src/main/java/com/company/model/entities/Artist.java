@@ -35,7 +35,9 @@ public class Artist implements Serializable{
 	
 	@Column(name="artist_url")
 	private String artistUrl;
-
+	
+	@Column(name="picture_url")
+	private String pictureUrl;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "artist_song", 
@@ -108,6 +110,14 @@ public class Artist implements Serializable{
 
 	public void setEnable(boolean enable) {
 		this.enable = enable;
+	}
+	
+	public String getPictureUrl() {
+		return this.pictureUrl;
+	}
+
+	public void setPictureUrl(String pictureUrl) {
+		this.pictureUrl = pictureUrl;
 	}
 	
 }
