@@ -3,22 +3,23 @@ package com.company.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.company.model.entities.User;
 import com.company.model.entities.Venue;
 import com.company.repository.VenueRepository;
 import com.company.service.VenueService;
-
-import scala.annotation.meta.setter;
 
 @Service
 public class VenueServiceImpl implements VenueService {
 
 	@Autowired
 	private VenueRepository repository;
+
+	@Autowired
+	private Environment environment;
 	
 	@Override
 	public List<Venue> list() {
@@ -32,6 +33,8 @@ public class VenueServiceImpl implements VenueService {
 
 	@Override
 	public Venue insert(Venue venue) {
+		String path = environment.getProperty("image.path");
+		venue.setPictureUrl(path + venue.getPictureUrl());
 		return repository.save( venue );
 	}
 
