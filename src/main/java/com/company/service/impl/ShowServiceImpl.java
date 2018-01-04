@@ -47,6 +47,7 @@ public class ShowServiceImpl implements ShowService {
 		persisted.setEndDateTime(show.getEndDateTime());
 		persisted.setArtist( show.getArtist());
 		persisted.setVenue(show.getVenue());
+		persisted.setImagepath(show.getImagepath());
 
 		return repository.save(persisted);
 	}

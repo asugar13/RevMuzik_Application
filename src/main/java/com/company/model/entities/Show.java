@@ -37,6 +37,9 @@ public class Show implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="start_date_time")
 	private Date startDateTime;
+	
+	@Column(name = "image_path")	
+	private String imagepath;
 
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
@@ -112,6 +115,14 @@ public class Show implements Serializable {
 
 	public void setVenue(List<Venue> venue) {
 		this.venue = venue;
+	}
+
+	public String getImagepath() {
+		return imagepath;
+	}
+
+	public void setImagepath(String imagepath) {
+		this.imagepath = imagepath;
 	}
 	
 }
