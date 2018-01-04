@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 
 //firebase stuff
-import { AngularFireModule } from 'angularfire2';
+//import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 
 //md modules
@@ -67,8 +67,8 @@ const appRoutes: Routes = [
     MatIconModule,
     MatDialogModule,
     MatInputModule,
-    RouterModule.forRoot(appRoutes),
-    AngularFireModule.initializeApp(environment.firebase)
+    RouterModule.forRoot(appRoutes)
+    //, AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [
     AuthService,

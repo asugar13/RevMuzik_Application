@@ -37,10 +37,8 @@ public class VenueResourceImpl implements VenueResource {
 			@ApiResponse(code = 204, message = "No content retrieve", responseContainer = "List", response = Void.class) })
 	@Override
 	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
-	public ResponseEntity<List<Venue>> list() {
-		
+	public ResponseEntity<List<Venue>> list() {	
 		List<Venue> venues = service.list();
-		
 		if (venues.isEmpty())
 			return new ResponseEntity<List<Venue>>(HttpStatus.NO_CONTENT);
 
@@ -54,15 +52,14 @@ public class VenueResourceImpl implements VenueResource {
 	@Override
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Venue> get(@ApiParam(value = "Veuen Id", required = true) @PathVariable("id") Long id) {
-		 Venue venue = service.get(id);
-
-		if (null == venue)
+    	 Venue venue = service.get(id);
+		 if (null == venue)
 			return new ResponseEntity<Venue>(HttpStatus.NO_CONTENT);
 
 		return new ResponseEntity<Venue>(venue, HttpStatus.OK);
 	}
 
-	@ApiOperation(value = "Update a venues resource", tags = { "venue" }, code = 200)
+	@ApiOperation(value = "Create a venues resource", tags = { "venue" }, code = 200)
 	@ApiResponses(value = {
 			@ApiResponse(code = 201, message = "Retrieve a created venue resource", response = Venue.class),
 			@ApiResponse(code = 400, message = "Bad Request", response = Void.class),
@@ -70,9 +67,7 @@ public class VenueResourceImpl implements VenueResource {
 	@Override
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ResponseEntity<Venue> create(@ApiParam(value = "Venue json stream resource", required = true, name = "venue") @Valid @RequestBody Venue venue) {
-		
 		Venue created = service.insert(venue);
-
 		if (null == created)
 			return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
 
@@ -88,9 +83,7 @@ public class VenueResourceImpl implements VenueResource {
 	@Override
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
 	public ResponseEntity<Venue> update(@ApiParam(value = "Venue json stream resource", required = true) @RequestBody Venue venue) {
-		
 		Venue persisted = service.update(venue);
-
 		if (null == persisted)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
@@ -104,10 +97,8 @@ public class VenueResourceImpl implements VenueResource {
 			@ApiResponse(code = 404, message = "Not found retrieve if no delete was process", response = Void.class) })
 	@Override
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Venue> delete(@ApiParam(value = "Venue Id", required = true) @PathVariable("id") Long id) {
-		
+	public ResponseEntity<Venue> delete(@ApiParam(value = "Venue Id", required = true) @PathVariable("id") Long id) {	
 		Venue persisted = service.delete(id);
-
 		if (null == persisted)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 

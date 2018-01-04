@@ -17,6 +17,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -48,6 +50,9 @@ public class Artist implements Serializable{
 	@JoinColumn(name = "iduser", nullable = false)	
 	private User user;
 	
+	@Column(name = "enable", columnDefinition = "BIT", length = 1)
+	@Type(type="yes_no")
+	public boolean enable;
 	
 	//@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -97,6 +102,12 @@ public class Artist implements Serializable{
 	public void setSocialMedia(SocialMedia socialMedia) {
 		this.socialMedia = socialMedia;
 	}
+	public boolean isEnable() {
+		return enable;
+	}
 
+	public void setEnable(boolean enable) {
+		this.enable = enable;
+	}
 	
 }

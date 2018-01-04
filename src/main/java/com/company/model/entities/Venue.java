@@ -128,7 +128,6 @@ public class Venue implements Serializable {
 		this.hours = hours;
 	}
 
-
 	public String getPhoneNumber() {
 		return this.phoneNumber;
 	}

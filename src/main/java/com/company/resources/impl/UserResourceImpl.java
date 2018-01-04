@@ -40,9 +40,7 @@ public class UserResourceImpl implements UserResource {
 	@Override
 	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
 	public ResponseEntity<List<User>> list() {
-		
 		List<User> users = service.list();
-
 		if (users.isEmpty())
 			return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
 
@@ -55,11 +53,9 @@ public class UserResourceImpl implements UserResource {
 			@ApiResponse(code = 204, message = "No content retrieve searched by id", response = Void.class) })
 	@Override
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<User> get(@ApiParam(value = "User Id", required = true) @PathVariable("id") Long id) {
-		
+	public ResponseEntity<User> get(@ApiParam(value = "User Id", required = true) @PathVariable("id") Long id) {	
 		User user = service.get(id);
 	    List<Genre> genre = repository.findListGenreById(user.getIduser());
-	    
 	    if (user !=null && genre !=null)
 		    user.setGenre(genre);
 		if (null == user)
@@ -68,17 +64,15 @@ public class UserResourceImpl implements UserResource {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "Update a user resource", tags = { "user" }, code = 200)
+	@ApiOperation(value = "Create a user resource", tags = { "user" }, code = 200)
 	@ApiResponses(value = {
 			@ApiResponse(code = 201, message = "Retrieve a created user resource", response = User.class),
 			@ApiResponse(code = 400, message = "Bad Request", response = Void.class),
 			@ApiResponse(code = 304, message = "Not modified retrieve if no user was created", response = Void.class) })
 	@Override
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ResponseEntity<User> create(@ApiParam(value = "User json stream resource", required = true, name = "user") @Valid @RequestBody User user) {
-		
+	public ResponseEntity<User> create(@ApiParam(value = "User json stream resource", required = true, name = "user") @Valid @RequestBody User user) {	
 		User created = service.insert(user);
-
 		if (null == created)
 			return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
 
@@ -93,10 +87,8 @@ public class UserResourceImpl implements UserResource {
 			@ApiResponse(code = 404, message = "Not found retrieve if no update was process", response = Void.class) })
 	@Override
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
-	public ResponseEntity<User> update(@ApiParam(value = "User json stream resource", required = true) @RequestBody User user) {
-		
+	public ResponseEntity<User> update(@ApiParam(value = "User json stream resource", required = true) @RequestBody User user) {	
 		User persisted = service.update(user);
-
 		if (null == persisted)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
@@ -110,10 +102,8 @@ public class UserResourceImpl implements UserResource {
 			@ApiResponse(code = 404, message = "Not found retrieve if no update was process", response = Void.class) })
 	@Override
 	@RequestMapping(value = "/updatePassword", method = RequestMethod.PUT)
-	public ResponseEntity<User> updatePassword(@ApiParam(value = "User json stream resource", required = true) @Valid @RequestBody User user) {
-		
+	public ResponseEntity<User> updatePassword(@ApiParam(value = "User json stream resource", required = true) @Valid @RequestBody User user) {		
 		User persisted = service.update(user);
-
 		if (null == persisted)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
@@ -127,9 +117,7 @@ public class UserResourceImpl implements UserResource {
 	@Override
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<User> delete(@ApiParam(value = "User Id", required = true) @PathVariable("id") Long id) {
-		
 		User persisted = service.delete(id);
-
 		if (null == persisted)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 

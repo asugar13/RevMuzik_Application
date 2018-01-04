@@ -45,6 +45,8 @@ public class VenueServiceImpl implements VenueService {
 		persisted.setPhoneNumber(venue.getPhoneNumber());
 		persisted.setLocation(venue.getLocation());
 		persisted.setCc_fips( venue.getCc_fips() );
+		persisted.setPictureUrl(venue.getPictureUrl());
+		persisted.setEnable(venue.isEnable());
 
 		return repository.save(persisted);
 	}
