@@ -1,4 +1,4 @@
-package com.company.useful;
+package com.company.util;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ public class StorageProperties {
     /**
      * Folder location for storing files
      */
-    private String location = "events-dir";
+    private String location = "gigs-dir";
 
     public String getLocation() {
         return location;

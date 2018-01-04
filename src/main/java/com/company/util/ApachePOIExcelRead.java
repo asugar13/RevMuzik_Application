@@ -1,4 +1,4 @@
-package com.company.useful;
+package com.company.util;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,14 +15,16 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
+import com.company.model.entities.Show;
+
 
 
 public class ApachePOIExcelRead {
 
-    /*public List<Ticket> readFile(String showId, InputStream fileContent, int sheetIndex) {
+    public List<Show> readFile(String showId, InputStream fileContent, int sheetIndex) {
 
         try {
-        	List<Ticket> ticketList = new ArrayList<Ticket>();
+        	List<Show> ticketList = new ArrayList<Show>();
         	
             Workbook workbook = new HSSFWorkbook( fileContent );
             Sheet datatypeSheet = workbook.getSheetAt( sheetIndex );
@@ -32,11 +34,11 @@ public class ApachePOIExcelRead {
             
             while (iterator.hasNext()) {
                 Row currentRow = iterator.next();
-                if ( currentRow.getRowNum() != 0 ) {
-                	Ticket ticket = convertCurrentRowIntoTicketObject(currentRow);
+               /* if ( currentRow.getRowNum() != 0 ) {
+                	Show ticket = convertCurrentRowIntoTicketObject(currentRow);
                 	ticket.setShow( new Show( new Long( showId ), "Evento " + showId ) );
                 	ticketList.add( ticket );
-                }
+                }*/
             }
             workbook.close();
             return ticketList;
@@ -50,16 +52,16 @@ public class ApachePOIExcelRead {
 
     }
     
-    private Ticket convertCurrentRowIntoTicketObject(Row currentRow) {
+    private Show convertCurrentRowIntoTicketObject(Row currentRow) {
 
-        Ticket ticket = new Ticket();
+    	Show ticket = new Show();
         
-        ticket.setOrderNumber( new Long( getStringValueFromCell( currentRow.getCell(0) ) ) );
+        /*ticket.setOrderNumber( new Long( getStringValueFromCell( currentRow.getCell(0) ) ) );
         ticket.setOrderType( getStringValueFromCell( currentRow.getCell(1) ) );
         ticket.setSector( getStringValueFromCell( currentRow.getCell(2) ) );
         ticket.setSeat( getStringValueFromCell( currentRow.getCell(3) ) );
         ticket.setOrderKey( getStringValueFromCell( currentRow.getCell(4) ) );
-        
+        */
         return ticket;
     	
     }
@@ -77,6 +79,6 @@ public class ApachePOIExcelRead {
     		return String.valueOf( (long)cell.getNumericCellValue() );
     	}
     	return null;
-    }*/
+    }
     
 }

@@ -1,4 +1,4 @@
-package com.company.useful;
+package com.company.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
