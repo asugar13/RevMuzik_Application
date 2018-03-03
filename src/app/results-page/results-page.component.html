@@ -1,0 +1,36 @@
+<div class="results-page">
+	<div class="results-header">
+	
+		<form class="form-inline">
+		  <div class="form-group">
+		    <label for="location"><span class="glyphicon glyphicon-map-marker"></span></label>
+		    <input type="text" class="form-control" id="location" placeholder="Toronto">
+		  </div>
+		  <div class="form-group">
+		    <label for="genre"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
+		    <input type="text" class="form-control" id="genre" placeholder="indie rock" name="searchQuery" [(ngModel)]="searchQuery"/>
+		  </div>
+		</form>
+
+		<ul class="nav nav-tabs">
+			<li role="presentation" [ngClass]="{'search-active': view == 'artist'}"><a (click)="artistView()">SEE BY ARTIST</a></li>
+			<li role="presentation" [ngClass]="{'search-active': view == 'venue'}"><a (click)="venueView()">SEE BY VENUE</a></li>
+		</ul>
+	</div>
+
+
+	<div class="results-body">
+		<span class="results-title">Results for searching for {{searchQuery}}</span>
+			<br>
+
+			<div class="results-list" *ngIf="view == 'artist'">
+				<artist-search-result class="result" [res]="result" *ngFor="let result of searchResults">
+				</artist-search-result>
+			</div>
+
+			<div class="results-list" *ngIf="view == 'venue'">
+				<venue-search-result class="result" [res]="result" *ngFor="let result of searchResults">
+				</venue-search-result>
+			</div>
+	</div>
+</div>

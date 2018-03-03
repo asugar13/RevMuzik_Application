@@ -1,0 +1,40 @@
+<div class="header">
+	<div class="logo-div" routerLink="/results">
+		<img class="logo" src="assets/images/logo.png" />
+		<img class="logo-text" src="assets/images/logowords.png" />
+	</div>
+
+<!-- Hide section if user logged in -->
+	<div class="navigation" *ngIf="!isSignedIn">
+		<a (click)="logIn();" class="link link1">Sign In</a>
+		<a (click)="signUp();" class="link link2">Create Account</a>
+	</div>
+
+<!--Hide if user not logged in -->
+	<div class="is-signed-in" *ngIf="isSignedIn">
+		<span class="search-icon-and-text">
+			<span class="glyphicon glyphicon-search"></span>
+			Search
+		</span>
+
+		<div class="right-icons">
+			<span>
+				<span class="glyphicon glyphicon-home"></span>
+				Home
+			</span>
+
+			<span>
+				<span class="glyphicon glyphicon-user"></span>
+				Artist Name
+			</span>
+
+			<span>
+				<span class="glyphicon glyphicon-cog"></span>
+				Settings
+			</span>
+		</div>
+	</div>
+
+	<!-- for mobile display -->
+	<span class="glyphicon glyphicon-menu-hamburger"></span>
+</div>
