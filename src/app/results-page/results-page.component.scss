@@ -7,8 +7,6 @@
 		display: flex;
 	    flex-direction: column;
 	    justify-content: flex-end;
-	    padding-left: 150px;
-	    padding-right: 150px;
 
 		.glyphicon{
 			color: white;
@@ -19,10 +17,11 @@
 			align-self: center;
     		margin-bottom: 95px;
     		display: flex;
+    		flex-direction: column;
     		width: 100%;
 		
     		.form-group{
-    			width: 50%;
+    			width: 265px;
     			align-items: center;
     			display: flex;
 
@@ -31,14 +30,14 @@
     			}
     			
     			input.form-control{
-    				width: 84%;
+    				width: 88%;
     				background-color: transparent !important;
     				border: 2px solid #fff !important;
     				color: #fff;
     				border-radius: 0px;
     			}
 
-    			#genre{
+    			#location, #genre{
 					margin-left: 5px;
     			}
     		}
@@ -69,6 +68,17 @@
 	.results-body{
 		margin: 10px 10%;
 
+		.filters{
+			margin-top: 40px;
+    		margin-bottom: 20px;
+
+			img{
+				width: 50px;
+				height: 50px;
+				cursor: pointer;
+    			
+			}
+		}
 		.results-list{
 		    display: flex;
 		    flex-flow: row wrap;
@@ -79,6 +89,69 @@
 		    	width: 30%;
 		    	margin-bottom: 55px;
 		    }
+		}
+	}
+}
+
+@media screen and (min-width: 768px){
+	.results-header{
+		padding-left: 150px;
+	    padding-right: 150px;
+	}
+
+	.form-inline{
+		flex-direction: row !important;
+
+		.form-group{
+			width: 500px !important;
+		}
+	}
+
+	.filters{
+
+		img{
+			margin-right: 30px;
+		}
+	}
+}
+
+@media screen and (max-width: 425px){
+	.results-header{
+		height: 200px !important;
+		padding: 10px 10px 0px 5px;
+
+		form{
+			margin-bottom: 5px !important;
+
+			.form-group{
+				width: 100% !important;
+				padding-left: 5px;
+			}
+		}
+	}
+
+	.filters{
+
+		img{
+			margin-right: 20px;
+		}
+	}
+
+
+	.results-list{
+		flex-direction: column;
+
+		.result{
+			width: 100% !important;
+		}
+	}
+}
+
+@media screen and (max-width: 320px){
+	.nav{
+
+		a{
+			font-size: 15px !important;
 		}
 	}
 }

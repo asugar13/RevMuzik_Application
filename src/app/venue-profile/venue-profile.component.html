@@ -8,15 +8,27 @@
 		<div class="form-title">Venue Info</div>
 
 		<div class="profile-form-container">
-			<form class="venue-profile-form">
+			<form class="venue-profile-form" [formGroup]="venueForm" (ngSubmit)="submit(venueForm.value)">
 				<div class="form-group">
 					<label>Venue Name</label>
 					<input type="text" name="">
 				</div>
 
+				<!--
+					<div class="form-group">
+						<label>Venue Id</label>
+						<input type="number" formControlName="idvenue">
+					</div>
+				-->
+
+				<div class="form-group">
+					<label>Description</label>
+					<input type="text" formControlName="description">
+				</div>
+
 				<div class="form-group">
 					<label>Address</label>
-					<input type="text" name="">
+					<input type="text"  formControlName="location">
 				</div>
 
 				<div class="form-group">
@@ -47,7 +59,7 @@
 
 				<div class="form-group">
 					<label>Capacity</label>
-					<input type="text" name="">
+					<input type="text" formControlName="capacity">
 				</div>
 
 				<div class="form-group">
@@ -57,32 +69,40 @@
 
 				<div class="form-group">
 					<label>Hours of operation</label>
-					<input type="text" name="">
+					<input type="text" formControlName="hours">
 				</div>
 
 				<div class="form-group">
-					<label>Contact Name</label>
-					<input type="text" name="">
+					<label>Phone Number</label>
+					<input type="number" formControlName="phoneNumber">
 				</div>
 
 				<div class="form-group">
-					<label>Contact Number</label>
-					<input type="text" name="">
+					<label>Contact Email</label>
+					<input type="text" formControlName="email">
 				</div>
 
 				<div class="form-group">
 					<label>Venue Website</label>
-					<input type="text" name="">
+					<input type="text" formControlName="url">
 				</div>
 
 				<div class="form-group">
 					<label>Equipment</label>
-					<input type="text" name="">
+					<input type="text" formControlName="equipments">
 				</div>
+
+				<!--
+					<div class="form-group" formGroupName="socialMedia">
+						<label>Social Media</label>
+						<input type="text" formControlName="nameSocialMedia" placeholder="Instagram">
+						<input type="text" formControlName="urlSocialMedia">
+					</div>
+				-->
 
 				<div class="action-buttons">
 					<button class="btn btn-cancel">Cancel</button>
-					<button class="btn btn-save">Save</button>
+					<button class="btn btn-save" type="submit">Save</button>
 				</div>
 			</form>
 		</div>

@@ -5,14 +5,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+
+//firebase stuff
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
 
 //md modules
 import { MdButtonModule, MdIconModule, MdDialogModule, MdInputModule } from '@angular/material';
 
 //services
 import { AuthService } from './services/auth.service';
+import { GigsService } from './services/gigs.service';
 
 import { HeaderComponent } from './header/header.component';
 import { ResultsPageComponent } from './results-page/results-page.component';
@@ -54,6 +60,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -61,10 +68,12 @@ const appRoutes: Routes = [
     MdIconModule,
     MdDialogModule,
     MdInputModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [
-    AuthService
+    AuthService,
+    GigsService
   ],
   entryComponents: [
     LoginComponent
