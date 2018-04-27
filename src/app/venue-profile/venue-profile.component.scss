@@ -51,6 +51,11 @@
 		.cover-photo{
 			background-color: #959595;
 	    	height: 275px;
+
+	    	.cover-image{
+	    		position: absolute;
+			    height: 275px;
+	    	}
 		}
 
 		.profile-photo{

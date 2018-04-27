@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { LoginComponent } from '../login/login.component';
 import { MdDialog } from '@angular/material';
@@ -13,7 +14,8 @@ export class HeaderComponent implements OnInit {
 	isSignedIn: boolean;
 
   constructor(
-  	private auth: AuthService,
+  	private router: Router,
+    private auth: AuthService,
   	private dialog: MdDialog) { 
   		this.isSignedIn = false;
   }
@@ -41,7 +43,7 @@ export class HeaderComponent implements OnInit {
   }
 
   signUp(){
-  	console.log("Registering new user");
+  	this.router.navigate(['create-account']);
   }
 
 }

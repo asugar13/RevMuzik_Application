@@ -33,13 +33,17 @@ import { VenueProfileComponent } from './venue-profile/venue-profile.component';
 import { FanProfileComponent } from './fan-profile/fan-profile.component';
 import { LoginComponent } from './login/login.component';
 import { PhotoUploadComponent } from './photo-upload/photo-upload.component';
+import { DetailsUploadComponent } from './details-upload/details-upload.component';
+import { ListUploadComponent } from './list-upload/list-upload.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
 
 const appRoutes: Routes = [
 	{path: 'home', component: HomePageComponent},
   {path: 'results', component: ResultsPageComponent},
   {path: 'artist-profile/:id', component: ArtistProfileComponent},
   {path: 'venue-profile/:id', component: VenueProfileComponent},
-	{path: 'fan-profile/:id', component: FanProfileComponent},
+  {path: 'fan-profile/:id', component: FanProfileComponent},
+	{path: 'create-account', component: CreateAccountComponent},
 	{path: '', redirectTo: '/results', pathMatch: 'full'},
 	{path: '**', component: PageNotFoundComponent}
 ]
@@ -58,7 +62,10 @@ const appRoutes: Routes = [
     VenueProfileComponent,
     FanProfileComponent,
     LoginComponent,
-    PhotoUploadComponent
+    PhotoUploadComponent,
+    DetailsUploadComponent,
+    ListUploadComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { UploadFileService } from '../services/upload-file.service';
 export class PhotoUploadComponent implements OnInit {
 
   selectedFiles: FileList;
+  coverImageUrl: any = null;
 
   constructor(private uploadService: UploadFileService) { }
 
@@ -17,7 +18,8 @@ export class PhotoUploadComponent implements OnInit {
 
   upload() {
     const file = this.selectedFiles.item(0);
-    this.uploadService.uploadfile(file);
+    this.coverImageUrl = this.uploadService.uploadfile(file);
+    console.log("Cover image url is: ", this.coverImageUrl);
   }
  
   selectFile(event) {

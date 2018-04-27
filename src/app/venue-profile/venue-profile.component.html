@@ -1,6 +1,7 @@
 <div class="venue-profile">
 	
 	<div class="cover-photo">
+		<img class="cover-image" [src]="(coverImageUrl | async) ? (coverImageUrl | async) : 'assets/images/cover-image.png'">
 		<img class="profile-photo" src="assets/images/add_profile_photo.png">
 		<photo-upload></photo-upload>
 	</div>
