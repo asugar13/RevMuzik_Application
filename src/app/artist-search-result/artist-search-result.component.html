@@ -1,22 +1,18 @@
 <div class="artist-result">
 	<div class="artist-info">
+		<!-- {{res|json}} -->
 		<div class="artist_name_and_icon">
-			<span class="artist-name" (click)="viewProfile(res)">{{res.artist.name}}</span>
-			<!--
-				<span class="type">
-					<img src="assets/images/Artistgray.png">
-				</span>
-			-->
+			<span class="artist-name" (click)="viewProfile(res)">{{res.artist[0]?.user.userName}}</span>
 		</div>	
 		
-		<img class="artist-image" [src]="res.artist.imageURL" />
+		<img class="artist-image" [src]="res.artist[0]?.pictureUrl" />
 	</div>
 	
 	<div class="event-info">
 		<div class="name-date-play">
 			<div class="name-and-date">
-				<span>{{res.venue.name}}</span>
-				<span>{{res.date | date: 'fullDate'}}</span>
+				<span>{{res.venue[0]?.description}}</span>
+				<span>{{res.startDateTime | date: 'fullDate'}}</span>
 			</div>
 
 			<button md-mini-fab>
@@ -25,7 +21,7 @@
 		</div>
 
 		<span class="address">
-			{{res.venue.address}}
+			{{res.venue[0]?.location}}
 		</span>
 	</div>
 

@@ -14,12 +14,7 @@ export class GigsService {
   }
 
   getGigs():any{
-  	return this.http.get(this.urlGigs).subscribe
-	  	(res => {
-	  		console.log(res);
-	  		return res;
-	  		//this.gigs = res;
-	  	})
+  	return this.http.get(this.urlGigs);
   }
 
 

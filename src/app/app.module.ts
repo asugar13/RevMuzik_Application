@@ -19,6 +19,7 @@ import { MdButtonModule, MdIconModule, MdDialogModule, MdInputModule } from '@an
 //services
 import { AuthService } from './services/auth.service';
 import { GigsService } from './services/gigs.service';
+import { UploadFileService } from './services/upload-file.service';
 
 import { HeaderComponent } from './header/header.component';
 import { ResultsPageComponent } from './results-page/results-page.component';
@@ -31,6 +32,7 @@ import { VenueSearchResultComponent } from './venue-search-result/venue-search-r
 import { VenueProfileComponent } from './venue-profile/venue-profile.component';
 import { FanProfileComponent } from './fan-profile/fan-profile.component';
 import { LoginComponent } from './login/login.component';
+import { PhotoUploadComponent } from './photo-upload/photo-upload.component';
 
 const appRoutes: Routes = [
 	{path: 'home', component: HomePageComponent},
@@ -55,7 +57,8 @@ const appRoutes: Routes = [
     VenueSearchResultComponent,
     VenueProfileComponent,
     FanProfileComponent,
-    LoginComponent
+    LoginComponent,
+    PhotoUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     AuthService,
-    GigsService
+    GigsService,
+    UploadFileService
   ],
   entryComponents: [
     LoginComponent

@@ -37,17 +37,15 @@
 			</audio>
 		-->
 
-		<div class="testSection">{{testRes}}</div>
-
 			<br>
 
 			<div class="results-list" *ngIf="view == 'artist'">
-				<artist-search-result class="result" [res]="result" *ngFor="let result of searchResults">
+				<artist-search-result class="result" [res]="result" *ngFor="let result of testRes">
 				</artist-search-result>
 			</div>
 
 			<div class="results-list" *ngIf="view == 'venue'">
-				<venue-search-result class="result" [res]="result" *ngFor="let result of searchResults">
+				<venue-search-result class="result" [res]="result" *ngFor="let result of testRes">
 				</venue-search-result>
 			</div>
 	</div>

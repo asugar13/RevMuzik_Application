@@ -40,7 +40,11 @@ export class ResultsPageComponent implements OnInit {
   }
 
   testGetGig(){
-    this.testRes = this.gigsSvc.getGigs();
-    console.log(this.testRes);
+    this.gigsSvc.getGigs()
+      .subscribe((res) => {
+        console.log(res); 
+        this.testRes = res;
+      });
+    //console.log(this.testRes);
   }
 }
