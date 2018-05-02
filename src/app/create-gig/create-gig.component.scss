@@ -1,0 +1,31 @@
+.new_gig_form{
+	
+}
+
+.btn{
+	background-color: #a209cf;
+}
+
+.submit_btn{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #fff;
+}
+
+.artists{
+	display: flex;
+	overflow: scroll;
+
+	.artist{
+		margin-right: 10px;
+	    border: 1px solid #8c5a7b;
+	    padding: 5px;
+
+		.artist_image{
+			max-height: 100px;
+			width: 10em;
+		}
+	}
+}

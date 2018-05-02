@@ -1,15 +1,15 @@
-<h2 md-dialog-title>LOGIN</h2>
+<h2 mat-dialog-title>LOGIN</h2>
 
-<md-dialog-content>
+<mat-dialog-content>
 	<form>
 		<input type="email" name="email" [(ngModel)]="email" placeholder="YouRock@mail.com">
 
 		<input type="password" name="password" [(ngModel)]="password" placeholder="Password">
 	</form>
 
-</md-dialog-content>
+</mat-dialog-content>
 
-<md-dialog-actions>
-	<button md-button (click)="cancel();">Cancel</button>
-	<button md-button md-dialog-close (click)="login();">Login</button>
-</md-dialog-actions>
+<mat-dialog-actions>
+	<button mat-button (click)="cancel();">Cancel</button>
+	<button mat-button mat-dialog-close (click)="login();">Login</button>
+</mat-dialog-actions>

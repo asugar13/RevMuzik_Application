@@ -1,0 +1,64 @@
+.container{
+	text-align: center;
+    max-width: 500px;
+    border: 1px solid #8073a2;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+
+.hours-group{
+	.btn{
+	    background-color: transparent;
+	    color: #a209cf;
+	}
+
+	.hours{
+		display: flex;
+
+		.weekday{
+		    max-width: 110px;
+	        text-align: center;
+	        border: none;
+		}
+	}
+
+	.hours-input{
+		display: flex;
+		margin-top: 20px;
+		justify-content: center;
+
+		.dow{
+			align-self: center;
+		    max-width: 110px;
+		}
+	}
+}
+
+.account_type_select{
+	display: flex;
+    flex-direction: column;
+    padding: 15px;
+    padding-left: 0px;
+
+    .btn-group{
+	    display: flex;
+	    justify-content: center;
+    }
+}
+
+.fanForm{
+    margin-bottom: 20px;
+}
+
+.btn{
+    /* background-image: linear-gradient(95deg, #3e034f, #a209cf 58%); 
+    background-image: linear-gradient(95deg, #b593ab, #a209cf 58%);*/
+    background-color: #a209cf;
+    font-weight: bold;
+    color: #fff;
+}
+
+.active{
+	background-color: #3e034f;
+}

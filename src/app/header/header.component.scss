@@ -30,7 +30,7 @@
 		    font-size: 20px;
 		    font-weight: bold;
 		    line-height: 1.38;
-		    color: #a209cf;
+		    color: #a93c84;
 		    text-decoration: none;
 		    cursor: pointer;
 		}
@@ -46,7 +46,7 @@
 	    justify-content: space-between;
 	    padding: 5px;
 	    align-items: center;
-	    color: #a209cf;
+	    color: #a93c84;
 	    margin-left: 20px;
 
 	    .glyphicon{
@@ -63,6 +63,12 @@
 
 	    .right-icons{
 	    	display: flex;
+
+	    	.new_gig_link{
+				display: flex;
+				align-items: center;
+				color: #a93c84;
+			}
 	    }
 	}
 

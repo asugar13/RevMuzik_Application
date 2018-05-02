@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   password: any; 
 
   constructor(
-  	public dialogRef: MdDialogRef<LoginComponent>,
+  	public dialogRef: MatDialogRef<LoginComponent>,
   	public authService: AuthService) { }
 
   ngOnInit() {

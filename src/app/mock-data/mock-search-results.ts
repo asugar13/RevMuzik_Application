@@ -1,6 +1,4 @@
-import { SearchResult } from '../classes/search-result';
-
-export const SEARCHRESULT: SearchResult[] = [
+export const SEARCHRESULT: any[] = [
 	{
 		artist: {name: 'Jeremy Fox', imageURL: 'https://www.wearetheguard.com/sites/default/files/pictures/matt-woods-sxsw-2016.jpg'},
 		venue: { name: 'Horseshoe Tavern', address: '16 Church Street, Toronto, Ontario M5C 2G1', imageURL: 'http://www.horseshoetavern.com/files/2015/01/IMG_9667-620x380.jpg'},

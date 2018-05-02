@@ -1,4 +1,9 @@
 export class Artist {
+	idartist: any;
 	name: string;
-	imageURL: string;
+	artistURL: string;
+	pictureURL: string;
+	song: any;
+	user: any;
+	socialMedia: any;
 }

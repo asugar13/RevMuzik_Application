@@ -1,30 +1,253 @@
 <div class="container">
-	<h3>New User</h3>
+	<h3>Create Account</h3>
 
-	<form class="fanForm" *ngIf="accountType === 'fan'">
-		<div class="form-group">
-			<label>Name</label>
-			<input type="text" name="">
-		</div>
+	<mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
+	  <mat-step [stepControl]="firstFormGroup">
+	    <form [formGroup]="userFormGroup">
+	      <ng-template matStepLabel>Personal Information</ng-template>
+	      
+	      <div class="form-group">
+		      <mat-form-field>
+		        <input matInput placeholder="First name" formControlName="userFirstName" required>
+		      </mat-form-field>
 
-		<div class="form-group">
-			<label>Country</label> dropdown, that sets city list, when updated
-			<input type="" name="">
-		</div>
+		      <mat-form-field>
+		        <input matInput placeholder="Last name" formControlName="userLastName" required>
+		      </mat-form-field>
+		  </div>
 
-		<div class="form-group">
-			<label>City</label>based on country selection above
-			<input type="" name="">
-		</div>
+		  <mat-form-field>
+		  	<input type="email" matInput placeholder="Email" formControlName="userEmail" required>
+		  </mat-form-field>
+	      <div>
+	        <button mat-button matStepperNext>Next</button>
+	      </div>
+	    </form>
+	  </mat-step>
+	  <!--<mat-step [stepControl]="secondFormGroup">
+	    <form [formGroup]="secondFormGroup">
+	      <ng-template matStepLabel>Fill out your address</ng-template>
+	      <mat-form-field>
+	        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+	      </mat-form-field>
+	      <div>
+	        <button mat-button matStepperPrevious>Back</button>
+	        <button mat-button matStepperNext>Next</button>
+	      </div>
+	    </form>
+	  </mat-step>-->
+	  <mat-step>
+	    <ng-template matStepLabel>Account Information</ng-template>
+	    
 
-		<div class="form-group">
-			<label>Favourite Genre</label>
-			<input type="" name="">
-		</div>
+	    <div class="account_specific_info">
+    		<div class="account_type_select">
+				<label>Select Account Type</label>
+				<div class="btn-group" role="group" aria-label="select account type">
+				  <button type="button" class="btn btn-secondary" (click)="setAccountType('fan')" [ngClass]="{'active': accountType === 'fan'}">Fan</button>
+				  <button type="button" class="btn btn-secondary" (click)="setAccountType('artist')" [ngClass]="{'active': accountType === 'artist'}">Artist</button>
+				  <button type="button" class="btn btn-secondary" (click)="setAccountType('venue')" [ngClass]="{'active': accountType === 'venue'}">Venue</button>
+				</div>
+			</div>
 
-		<div class="form-group">
-			<label>Favourite Artists/ Bands</label>
-			<input type="text" name="">
-		</div>
-	</form>
+			<!-- Create new fan form start -->
+			<form class="fanForm" 
+				#fan="ngForm" 
+				(ngSubmit)="newFan(fan.value)"
+				*ngIf="accountType === 'fan'">
+
+				<div class="form-group">
+					<mat-form-field class="name-form-group">
+						<input matInput type="text" placeholder="Name" name="name" ngModel>
+					</mat-form-field>
+				</div>
+
+				<div class="form-group">
+					<mat-form-field class="dob">
+						<input matInput [matDatepicker]="picker" placeholder="Date of Birth" ngModel name="dateOfBirth">
+						<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+						<mat-datepicker startView="year" #picker></mat-datepicker>
+					</mat-form-field>
+				</div>
+
+				<div class="form-group">
+					<mat-form-field>
+					  <mat-select placeholder="Country" (change)="countryChanged($event);" ngModel name="country">
+					    <mat-option *ngFor="let country of countries" [value]="country.val">
+					      {{ country.name }}
+					    </mat-option>
+					  </mat-select>
+					</mat-form-field>
+				</div>
+
+				<div class="form-group">
+					<mat-form-field>	
+						<mat-select placeholder="Province" ngModel name="state">
+							<mat-option *ngFor="let state of states" [value]="state">
+								{{ state }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+
+				<div class="form-group">
+					<mat-form-field>	
+						<mat-select placeholder="Favourite Genre" ngModel name="favouriteGenre">
+							<mat-option *ngFor="let genre of genres" [value]="genre">
+								{{ genre }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+
+				<mat-form-field class="demo-chip-list">
+					<mat-chip-list #chipList>
+						<mat-chip *ngFor="let artist of artists" [selectable]="true"
+						[removable]="true" (remove)="removeFavourite(artist)">
+							{{artist.name}}
+							<mat-icon matChipRemove>cancel</mat-icon>
+						</mat-chip>
+
+						<input placeholder="Favourite artists/bands..."
+							[matChipInputFor]="chipList"
+							[matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+							[matChipInputAddOnBlur]="true"
+							(matChipInputTokenEnd)="add($event)" />
+					</mat-chip-list>
+				</mat-form-field>
+
+				<div class="submit-buttons">
+					<button type="button" class="btn submit-btn" (click)="newFan(fan.value);">Submit</button>
+				</div>
+			</form>
+			<!-- Create new fan form ends -->
+
+			<!-- Create new artist form start -->
+			<form class="artistForm"
+				#artist="ngForm"
+				(ngSubmit)="newArtist(artist)"
+				*ngIf="accountType === 'artist'">
+
+				<div class="form-group">
+					Artist form contents
+
+					pictureUrl
+				</div>
+			</form>
+			<!-- Create new artist form end -->	
+
+			<!-- Create new venue form start -->
+			<form class="venueForm" 
+				#venue="ngForm" 
+				(ngSubmit)="newVenue(venue.value)"
+				*ngIf="accountType === 'venue'">
+				
+				<!--
+					pictureUrl, capacity, description, location, email, equipment, hours, phone number, url, social media
+				-->
+
+				<div class="form-group">
+					<mat-form-field class="venue-name">
+						<input matInput placeholder="Name of Venue" name="name" ngModel>
+					</mat-form-field>
+				</div>	
+
+				<div class="form-group">
+					<mat-form-field>
+						<input matInput="email" placeholder="Email" name="email" ngModel>
+					</mat-form-field>
+				</div>
+
+				<div class="form-group">
+					<mat-form-field>
+						<textarea matInput placeholder="Description" name="description" ngModel></textarea>
+					</mat-form-field>
+				</div>
+
+				<div class="form-group">
+					<mat-form-field class="location-input">
+						<input matInput placeholder="Address" name="location" ngModel>
+					</mat-form-field>
+				</div>
+
+				<div class="form-group">
+					<mat-form-field>
+						<input matInput="tel" type="phone-number" placeholder="Phone Number" name="phoneNumber" ngModel>
+					</mat-form-field>
+				</div>	
+
+				<div class="form-group">
+					<mat-form-field>
+						<input matInput="url" placeholder="Website" name="url" ngModel>
+					</mat-form-field>
+				</div>
+
+				<div class="form-group">
+					<mat-form-field>
+						<input matInput="number" placeholder="Capacity" name="capacity" ngModel>
+					</mat-form-field>
+				</div>
+
+				<mat-form-field class="demo-chip-list">
+					<mat-chip-list #equipmentList>
+						<mat-chip *ngFor="let equipment of equipments" [selectable]="true"
+						[removable]="true" (remove)="removeEquipment(equipment)">
+							{{equipment.name}}
+							<mat-icon matChipRemove>cancel</mat-icon>
+						</mat-chip>
+
+						<input placeholder="Equipments..."
+							[matChipInputFor]="equipmentList"
+							[matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+							[matChipInputAddOnBlur]="true"
+							(matChipInputTokenEnd)="addEquipment($event)" />
+					</mat-chip-list>
+				</mat-form-field>
+
+				<div class="form-group hours-group">
+					<label>Hours of Operation</label>
+
+					<div class="hours" *ngFor="let day of hoursWorked; let i = index;">
+						<input type="text" class="weekday" name="day-of-week" disabled="true" [(ngModel)]="day.day" [ngModelOptions]="{standalone: true}"> 
+						<input type="time" class="startTime" [(ngModel)]="day.startTime" [ngModelOptions]="{standalone: true}">  
+						<input type="time" class="endTime" [(ngModel)]="day.endTime" [ngModelOptions]="{standalone: true}"> 
+						<i class="fa fa-times fa-lg btn remove" (click)="removeDay(i)"></i>
+					</div>
+
+					<div class="hours-input">
+						<!-- Day of the week selector start -->
+							<mat-select placeholder="Weekday" [(value)]="newDay" class="dow">
+								<mat-option value="Monday">Monday</mat-option>
+								<mat-option value="Tuesday">Tuesday</mat-option>
+								<mat-option value="Wednesday">Wednesday</mat-option>
+								<mat-option value="Thursday">Thursday</mat-option>
+								<mat-option value="Friday">Friday</mat-option>
+								<mat-option value="Saturday">Saturday</mat-option>
+								<mat-option value="Sunday">Sunday</mat-option>
+							</mat-select>
+						<!-- Day of the week selector end -->
+
+						<!-- select time start-->
+							<input type="time" [(ngModel)]="startTime" name="startTime" [ngModelOptions]="{standalone: true}">
+							<input type="time" [(ngModel)]="endTime" name="endTime" [ngModelOptions]="{standalone: true}">
+						<!-- select time end-->
+
+						<i class="fa fa-plus fa-lg btn add-time-btn" (click)="addHours(newDay, startTime, endTime);"></i>
+					</div>
+				</div>
+
+				<div class="submit-buttons">
+					<button type="button" class="btn submit-btn" (click)="newVenue(venue.value);">Submit</button>
+				</div>
+			</form>
+			<!-- Create new venue form end -->
+	    </div>
+
+	    <div>
+	      <button mat-button matStepperPrevious>Back</button>
+	      <button mat-button (click)="stepper.reset()">Reset</button>
+	    </div>
+	  </mat-step>
+	</mat-horizontal-stepper>
+
 </div>

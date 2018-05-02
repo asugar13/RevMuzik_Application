@@ -13,8 +13,16 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 
-//md modules
-import { MdButtonModule, MdIconModule, MdDialogModule, MdInputModule } from '@angular/material';
+//material design modules
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material';
+import { MatStepperModule } from '@angular/material/stepper';
 
 //services
 import { AuthService } from './services/auth.service';
@@ -36,6 +44,7 @@ import { PhotoUploadComponent } from './photo-upload/photo-upload.component';
 import { DetailsUploadComponent } from './details-upload/details-upload.component';
 import { ListUploadComponent } from './list-upload/list-upload.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { CreateGigComponent } from './create-gig/create-gig.component';
 
 const appRoutes: Routes = [
 	{path: 'home', component: HomePageComponent},
@@ -43,7 +52,8 @@ const appRoutes: Routes = [
   {path: 'artist-profile/:id', component: ArtistProfileComponent},
   {path: 'venue-profile/:id', component: VenueProfileComponent},
   {path: 'fan-profile/:id', component: FanProfileComponent},
-	{path: 'create-account', component: CreateAccountComponent},
+  {path: 'create-account', component: CreateAccountComponent},
+	{path: 'create-gig', component: CreateGigComponent},
 	{path: '', redirectTo: '/results', pathMatch: 'full'},
 	{path: '**', component: PageNotFoundComponent}
 ]
@@ -65,7 +75,8 @@ const appRoutes: Routes = [
     PhotoUploadComponent,
     DetailsUploadComponent,
     ListUploadComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    CreateGigComponent
   ],
   imports: [
     BrowserModule,
@@ -74,10 +85,15 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MdButtonModule,
-    MdIconModule,
-    MdDialogModule,
-    MdInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDialogModule,
+    MatInputModule,
+    MatSelectModule,
+    MatChipsModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatStepperModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase)
   ],
