@@ -27,6 +27,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 //services
 import { AuthService } from './services/auth.service';
 import { GigsService } from './services/gigs.service';
+import { UserService } from './services/user.service';
 import { UploadFileService } from './services/upload-file.service';
 
 import { HeaderComponent } from './header/header.component';
@@ -45,10 +46,12 @@ import { DetailsUploadComponent } from './details-upload/details-upload.componen
 import { ListUploadComponent } from './list-upload/list-upload.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { CreateGigComponent } from './create-gig/create-gig.component';
+import { GigDetailsComponent } from './gig-details/gig-details.component';
 
 const appRoutes: Routes = [
 	{path: 'home', component: HomePageComponent},
   {path: 'results', component: ResultsPageComponent},
+  {path: 'gig-details/:id', component: GigDetailsComponent},
   {path: 'artist-profile/:id', component: ArtistProfileComponent},
   {path: 'venue-profile/:id', component: VenueProfileComponent},
   {path: 'fan-profile/:id', component: FanProfileComponent},
@@ -76,7 +79,8 @@ const appRoutes: Routes = [
     DetailsUploadComponent,
     ListUploadComponent,
     CreateAccountComponent,
-    CreateGigComponent
+    CreateGigComponent,
+    GigDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -100,6 +104,7 @@ const appRoutes: Routes = [
   providers: [
     AuthService,
     GigsService,
+    UserService,
     UploadFileService
   ],
   entryComponents: [

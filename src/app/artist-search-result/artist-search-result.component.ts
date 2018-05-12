@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { SearchResult } from '../classes/search-result';
 
 @Component({
   selector: 'artist-search-result',
@@ -9,7 +8,7 @@ import { SearchResult } from '../classes/search-result';
 })
 export class ArtistSearchResultComponent implements OnInit {
   
-  @Input() res: SearchResult;
+  @Input() res: any;
   today: any;
 
   constructor(
@@ -21,7 +20,7 @@ export class ArtistSearchResultComponent implements OnInit {
   ngOnInit() {
   }
 
-  viewProfile(result: SearchResult){
+  viewProfile(result: any){
   	//consider switching name to id
   	this.router.navigate(['/artist-profile', result.artist.name]);
   }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-create-account',
@@ -38,20 +39,48 @@ export class CreateAccountComponent implements OnInit {
 
   //// form properties
   userFormGroup: FormGroup;
+  PROFILE = {
+            "idprofile": 1
+          }; 
+  TYPEUSER = {
+            "idtypeUser": 1
+          };
 
-  constructor(private fbuilder: FormBuilder) { }
+  constructor(
+    private fbuilder: FormBuilder,
+    private userSvc: UserService) { }
 
   ngOnInit() {
     this.userFormGroup = this.fbuilder.group({
       userFirstName: ['', Validators.required],
       userLastName: ['', Validators.required],
-      userEmail: ['', Validators.required]
+      userEmail: ['', Validators.required],
+      userName: ['', Validators.required],
+      profile: [this.PROFILE],
+      typeuser: [this.TYPEUSER],
+      userPassword: ['', Validators.required],
+      enable: [true],
+      genre: [[]]
     });
   }
 
   //displays appropriate sign up form to user based on account types [venue, artist, fan]
   setAccountType(type){
   	this.accountType = type;
+
+    //set typeuser value
+    switch(type){
+      case 'fan':
+        this.userFormGroup.controls['typeuser'].setValue({"idtypeUser": 4});
+        break;
+      case 'artist':
+        this.userFormGroup.controls['typeuser'].setValue({"idtypeUser": 3});
+        break;
+      case 'venue':
+        this.userFormGroup.controls['typeuser'].setValue({"idtypeUser": 2});
+        break;
+    }
+    
   }
 
   //populates the state select input with the option of the right states to choose from
@@ -108,7 +137,8 @@ export class CreateAccountComponent implements OnInit {
   //submit new fan form
   newFan(fan: any): void{
   	console.log("Creating new fan...", fan);
-  	console.log("Favourite artists", this.artists);
+
+
   }
 
 
@@ -160,4 +190,11 @@ export class CreateAccountComponent implements OnInit {
   	console.log("Creatng new venue", venue);
   }
 
+
+  // create account combines all info from form and communicates with db
+  //
+  createAccount(user){
+    console.log(JSON.stringify(user));
+    this.userSvc.createUser(JSON.stringify(user));
+  }
 }

@@ -1,84 +1,107 @@
 .venue-profile{
+	background-color: #D6D6D6;
+	padding-top: 10px;
+}
 
-	.venue-profile-body{
-		margin-top: 20px;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50px;
-		border: 1px solid #707070;
-		padding-left: 0px;
-		padding-right: 0px;
+.row{
+	margin-bottom: 50px;
+}
 
-		.form-title{
-			background-color: #ebebeb;
-		    padding: 10px;
-		    color: #333333;
-		    font-weight: bold;
-		}
-
-		.profile-form-container{
-			padding: 10px;
-
-			.venue-profile-form{
-				.form-group input{
-					border: 1px solid #707070;
-					margin-left: 10px;
-				}
-
-				.action-buttons{
-				    display: flex;
-    				justify-content: space-around;
-
-    				.btn{
-    					width: 168px;
-    				}
-
-    				.btn-save{
-    					background-color: #7401e6;
-    					color: #fff;
-    				}
-
-    				.btn-cancel{
-    					background-color: #929496;
-    					color: #fff;
-    				}
-				}
-			}
-		}
+.info_row{
+	.venue_info{
+		text-align: center;
 	}
 
-	@media (min-width: 768px){ 
-		.cover-photo{
-			background-color: #959595;
-	    	height: 275px;
+	.user_actions{
+	    top: -75px;
+	    width: 200px;
+	    display: block;
+	    float: right;
+	    padding: 0px 10px;
 
-	    	.cover-image{
-	    		position: absolute;
-			    height: 275px;
+	    .ratings{
+	    	padding-bottom: 10px;
+	    }
+	    
+	    .ratings .fa{
+	    	color: #AA47BC;
+	    }
+
+	    .ratings .fa-heart-o{
+	    	padding-left: 0px;
+	    }
+
+	    .actions{
+	    	.fa{
+	    		padding: 0 10px;
 	    	}
-		}
+	    }
+	}
+}
 
-		.profile-photo{
-			margin-left: 20%;
-		    top: 130px;
-		    position: relative;
-		}
-		
-		.container {
-	    	max-width: 60%;
-		}
-		.venue-profile-body{
-			margin-top: 90px;
-		}
+.item-media{
+	margin: 0 auto;
+	margin-bottom: 50px;
+	max-height: 500px;
+}
 
-		.form-group{
-			margin-left: 20px;
-			display: flex;
-		    justify-content: space-between;
-		    width: 90%;
+.carousel-inner{
+	top: -35px;
+}
 
-		    input{
-		    	width: 70%;
+.carousel-control-prev-icon, .carousel-control-next-icon{
+	color: #AA47BC;
+}
+
+.venue-profile-body{
+	.venue_details_container{
+		display: flex;
+		justify-content: space-between;
+	    align-items: center;
+	}
+
+	.calendar{
+		h3{
+			text-align: center;
+		    margin-top: 0px;
+    	}
+	}
+
+	.upcoming{
+		padding-top: 20px;
+	}
+
+	.latest_gig, .upcoming_gig{
+		padding: 20px;
+	    max-height: 250px;
+	    max-width: 250px;
+	}
+}
+
+.details_container{
+	background-color: #fff;
+
+	h3{
+		text-align: center;
+	}
+}
+
+.artist_performance_history{
+	background-color: #fff;	
+
+	.artists{
+	    display: flex;
+	    justify-content: space-around;
+	    margin-bottom: 15px;
+	
+		.artist{
+		    max-height: 100px;
+		    max-width: 100px;
+		    display: flex;
+		    flex-direction: column;
+
+		    img{
+	    	    max-width: 100%;
 		    }
 		}
 	}

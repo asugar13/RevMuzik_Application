@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ARTISTRESULT } from '../mock-data/mock-artist-results';
 
 @Component({
   selector: 'app-venue-profile',
@@ -10,6 +11,8 @@ import { HttpClient } from '@angular/common/http';
 export class VenueProfileComponent implements OnInit {
 
   venueForm: FormGroup;
+  upcomingGig: any = ARTISTRESULT[0];
+  latestGig: any = ARTISTRESULT[1];
 
   constructor(
   	private fb: FormBuilder,

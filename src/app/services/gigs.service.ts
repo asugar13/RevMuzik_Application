@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class GigsService {
 
 	gigs: any;
 	urlGigs = 'https://default-environment.vbyhfwx3nw.ca-central-1.elasticbeanstalk.com/api/v1/show';//enter url into browser, hit advanced and proceed 
-	newGigsUrl = 'https://default-environment.vbyhfwx3nw.ca-central-1.elasticbeanstalk.com/api/v1/show/create';
+	newGigsUrl = 'http://default-environment.vbyhfwx3nw.ca-central-1.elasticbeanstalk.com/api/v1/show/create';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
 
   constructor(
   	private http: HttpClient) { 
@@ -19,6 +24,16 @@ export class GigsService {
   }
 
   newGig(data): any{
-  	//return this.http.post(data, this.newGigsUrl);
+  	let stringData = JSON.stringify(data);
+    //console.log("Raw data: ", data);
+    //console.log("stringified data: ", stringData);
+
+    return this.http.post(this.newGigsUrl, stringData, this.httpOptions)
+      .subscribe(res =>{
+        console.log("Success");
+        //console.log(res);
+      }, err => {
+        console.log("Error occured: ", err);
+      });
   }
 }

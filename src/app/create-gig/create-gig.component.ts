@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ARTISTS } from '../mock-data/mock-artists';
 import { HttpClient } from '@angular/common/http';
+import { GigsService } from '../services/gigs.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-gig',
@@ -12,10 +14,23 @@ export class CreateGigComponent implements OnInit {
   artists: any = [];
   selectedArtists: any = [];
   urlGigs = 'https://default-environment.vbyhfwx3nw.ca-central-1.elasticbeanstalk.com/api/v1/show/create';
+  gigForm: FormGroup;
 
-  constructor(private http: HttpClient) { this.getFakeArtists(); }
+  constructor(
+    private http: HttpClient,
+    private gigsSvc: GigsService,
+    private fbuilder: FormBuilder) { this.getFakeArtists(); }
 
   ngOnInit() {
+    this.gigForm = this.fbuilder.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      startDateTime: ['', Validators.required],
+      endDateTime: ['', Validators.required],
+      imagepath: "imageplaceholder",
+      artist: [[{"idartist": 1}]],
+      venue: [[{"idvenue": 1}]]
+    });
   }
 
   getFakeArtists(){
@@ -30,11 +45,24 @@ export class CreateGigComponent implements OnInit {
   	this.selectedArtists.splice(index, 1);
   }
 
-  newGig(gig){
-  	console.log(gig);
-  	console.log(this.selectedArtists);
+  newGig(){
+  	//console.log(gig);
+  	//console.log(this.selectedArtists);
 
-  	return this.http.post(this.urlGigs, gig);
+    let startDate = this.getEpochMillis(this.gigForm.value.startDateTime);
+    let endDate = this.getEpochMillis(this.gigForm.value.endDateTime);
+
+    this.gigForm.controls['startDateTime'].setValue(startDate);
+    this.gigForm.controls['endDateTime'].setValue(endDate);
+    this.gigForm.controls['artist'].setValue(this.selectedArtists);
+
+    console.log(this.gigForm.value);
+
+  	this.gigsSvc.newGig(this.gigForm.value);
   }
+
+  getEpochMillis(dateStr) {
+    return Date.parse(dateStr);
+  };
 
 }

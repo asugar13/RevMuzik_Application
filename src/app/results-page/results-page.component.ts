@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResult } from '../classes/search-result';
 import { SEARCHRESULT } from '../mock-data/mock-search-results';
+import { ARTISTRESULT } from '../mock-data/mock-artist-results';
 
 import { GigsService } from '../services/gigs.service';
 
@@ -18,9 +19,10 @@ export class ResultsPageComponent implements OnInit {
 
   constructor(
     private gigsSvc: GigsService) { 
-  	this.searchEvents();
+  	  //mock data assignment
+      this.searchEvents();
 
-    this.testGetGig();
+      //this.testGetGig();
   }
 
   ngOnInit() {
@@ -36,7 +38,7 @@ export class ResultsPageComponent implements OnInit {
 
   //move this into service
   searchEvents(){
-  	this.searchResults = SEARCHRESULT;
+  	this.testRes = ARTISTRESULT;
   }
 
   testGetGig(){

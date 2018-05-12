@@ -1,13 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class UserService {
 
-  constructor(private http: Http) { }
+  userURL: any;
+  //http options
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
+
+  constructor(
+    private http: HttpClient,
+    private router: Router) { this.userURL = 'http://default-environment.vbyhfwx3nw.ca-central-1.elasticbeanstalk.com/api/v1/user/'}
 
   getUser(user){
-  	var url = '/api/v1/user/' + user;
+  	var url = this.userURL + user; //website.com/user/id
   	
   	return this.http
   		.get(url)
@@ -20,9 +31,18 @@ export class UserService {
   }
 
   createUser(user){
-  	return this.http
-  		.post('/api/v1/user/create', user)
-  		.subscribe();
+  	console.log("Url is: ", this.userURL + 'create')
+    return this.http
+  		.post(this.userURL + 'create', user, this.httpOptions)
+  		.subscribe(
+        res => {
+          //SUCCESS
+          console.log(res);
+          //navigate to results page
+          this.router.navigate(['/results']);
+        }, error => {
+          console.log("Error occured: ", error);
+        });
   }
 
   deleteUser(id){

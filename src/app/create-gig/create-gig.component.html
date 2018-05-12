@@ -2,27 +2,27 @@
 
 	<h2>Create Gig</h2>
 	
-	<form class="new_gig_form" #gigForm="ngForm" (ngSubmit)="newGig(gigForm.value)">
+	<form class="new_gig_form" [formGroup]="gigForm" (ngSubmit)="newGig()">
 		
 		<div class="form-group">
 			<mat-form-field>
-				<input matInput placeholder="Name" name="name" ngModel>
+				<input matInput placeholder="Name" formControlName="name">
 			</mat-form-field>
 		</div>
 
 		<div class="form-group">
 			<mat-form-field>
-				<textarea matInput placeholder="Short description of event" name="description" ngModel></textarea>
+				<textarea matInput placeholder="Short description of event" formControlName="description"></textarea>
 			</mat-form-field>
 		</div>
 
 		<div class="form-group">
 			<mat-form-field>
-				<input matInput type="datetime-local" placeholder="Start Time" name="startDateTime" ngModel>
+				<input matInput type="datetime-local" placeholder="Start Time" formControlName="startDateTime">
 			</mat-form-field>
 
 			<mat-form-field>
-				<input matInput type="datetime-local" placeholder="End Time" name="endDateTime" ngModel>
+				<input matInput type="datetime-local" placeholder="End Time" formControlName="endDateTime">
 			</mat-form-field>
 		</div>
 
